@@ -1,6 +1,5 @@
 import * as html from '@hyperapp/html'
 
-import circleButton from '../widgets/button-circle'
 import {PageTypes} from '../pages'
 
 export default function view(requestPageTransition) {
@@ -12,21 +11,26 @@ export default function view(requestPageTransition) {
     [
       html.div(
         [
-          'Menu',
-          html.div([
-            html.select({
-              value: 'Checking',
+          html.h3('Menu'),
+          html.div(
+            {
+              class: 'flex flex-column',
             },
-              [
-                html.option('Checking'),
-                html.option('Savings'),
-                html.option('TFSA'),
-              ]
-            ),
-            html.button('Transfer'),
-            html.button('Deposit'),
-            html.button('Withdraw'),
-          ]),
+            [
+              html.select({
+                value: 'Checking',
+              },
+                [
+                  html.option('Checking'),
+                  html.option('Savings'),
+                  html.option('TFSA'),
+                ]
+              ),
+              html.button('Transfer'),
+              html.button('Deposit'),
+              html.button('Withdraw'),
+            ]
+          ),
         ],
       ),
     ],

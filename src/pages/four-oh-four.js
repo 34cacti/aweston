@@ -1,6 +1,5 @@
 import * as html from '@hyperapp/html'
 
-import circleButton from '../widgets/button-circle'
 import {PageTypes} from '../pages'
 
 export default function view(requestPageTransition) {
@@ -8,12 +7,14 @@ export default function view(requestPageTransition) {
     {
       id: 'page-404',
       class: 'page',
-      onclick: () => requestPageTransition(PageTypes.WELCOME),
     },
     [
       html.div(
-        '404',
-        circleButton('404'),
+        html.h3('$404'),
+        html.button(
+          {onclick: requestPageTransition(PageTypes.WELCOME)},
+          'Click to continueto Welcome Screen',
+        )
       ),
     ],
   )

@@ -1,19 +1,34 @@
 import * as html from '@hyperapp/html'
 
 import circleButton from '../widgets/button-circle'
+import keypad from '../widgets/keypad'
 import {PageTypes} from '../pages'
 
-export default function view(requestPageTransition) {
+export default function view(loginUser) {
   return html.div(
     {
       id: 'page-login',
       class: 'page',
-      onclick: () => requestPageTransition(PageTypes.MENU),
     },
     [
-      html.div(
-        'Login',
-      ),
+      html.div([
+        html.h3('Please enter pin'),
+        keypad(),
+        html.input(
+          {
+            type: 'password',
+          },
+        ),
+        html.button(
+          {
+            class: 'btn',
+            onclick: () => loginUser(),
+          },
+          [
+            'Verify Pin',
+          ]
+        ),
+      ]),
     ],
   )
 }

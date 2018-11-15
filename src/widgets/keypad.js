@@ -27,6 +27,6 @@ function key(k) {
     {
       class: 'widget-key',
     },
-    k
+    html.button(k)
   )
 }

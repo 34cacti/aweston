@@ -8,11 +8,13 @@ export default function view(requestPageTransition) {
     {
       id: 'page-welcome',
       class: 'page',
-      onclick: () => requestPageTransition(PageTypes.LOGIN),
     },
     [
-      html.div(
-        'Touch to begin',
+      html.button(
+        {
+          onclick: () => requestPageTransition(PageTypes.LOGIN),
+        },
+        ['touch to begin'],
       ),
     ],
   )
