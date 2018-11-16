@@ -1,6 +1,5 @@
 import * as html from '@hyperapp/html'
 
-import circleButton from '../widgets/button-circle'
 import keypad from '../widgets/keypad'
 import {PageTypes} from '../pages'
 
