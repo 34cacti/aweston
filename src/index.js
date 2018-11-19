@@ -4,49 +4,17 @@ import devtools from 'hyperapp-redux-devtools'
 
 import {PageTypes} from './pages'
 import {getLogger} from './logger'
-import keypad from './widgets/keypad'
 import WelcomePage from './pages/welcome'
 import MenuPage from './pages/menu'
 import LoginPage from './pages/login'
 import FourOhFour from './pages/four-oh-four'
 import headerWidget from './widgets/header'
+import {state} from './state'
+import {actions} from './actions'
+import cardSwiper from './widgets/card-swiper'
+import cardInserter from './widgets/card-inserter'
 
 const logger = getLogger('main')
-
-const state = {
-  page: PageTypes.WELCOME,
-  loggedInAccount: null,
-}
-
-const actions = {
-  transitionPage: (page = PageTypes.FOUR_OH_FOUR) => (state, actions) => {
-    logger.log(`Transitioning page: ${state.page} -> ${page}`)
-    return {
-      ...state,
-      page,
-    }
-  },
-
-  logUserOut: () => (state, actions) => {
-    logger.log('Logging user out')
-    // setTimeout(() => actions.transitionPage(PageTypes.WELCOME), 0)
-    return {
-      ...state,
-      ...actions.transitionPage(PageTypes.WELCOME),
-      loggedInAccount: null,
-    }
-  },
-
-  logUserIn: () => (state, actions) => {
-    logger.log('Logging in')
-    // setTimeout(() => actions.transitionPage(PageTypes.MENU), 0)
-    return {
-      ...state,
-      ...actions.transitionPage(PageTypes.MENU),
-      loggedInAccount: {number: 6969696969, holder: '6ixy9ine'},
-    }
-  },
-}
 
 function view(state, actions) {
   return html.div(
@@ -59,6 +27,8 @@ function view(state, actions) {
         state.loggedInAccount,
       ),
       renderPage(state, actions),
+      cardSwiper(),
+      cardInserter(),
     ]
   )
 }
