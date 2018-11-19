@@ -17,18 +17,18 @@ export default function view(requestPageTransition) {
               class: 'flex flex-column',
             },
             [
-              html.select({
-                value: 'Checking',
-              },
-                [
-                  html.option('Checking'),
-                  html.option('Savings'),
-                  html.option('TFSA'),
-                ]
+              html.button(
+                {onclick: () => requestPageTransition(PageTypes.TRANSFER)},
+                'Transfer'
               ),
-              html.button('Transfer'),
-              html.button('Deposit'),
-              html.button('Withdraw'),
+              html.button(
+                {onclick: () => requestPageTransition(PageTypes.DEPOSIT)},
+                'Deposit'
+              ),
+              html.button(
+                {onclick: () => requestPageTransition(PageTypes.WITHDRAW)},
+                'Withdraw'
+              ),
             ]
           ),
         ],

@@ -8,6 +8,9 @@ import WelcomePage from './pages/welcome'
 import MenuPage from './pages/menu'
 import LoginPage from './pages/login'
 import FourOhFour from './pages/four-oh-four'
+import TransferPage from './pages/transfer'
+import WithdrawPage from './pages/withdraw'
+import DepositPage from './pages/deposit'
 import headerWidget from './widgets/header'
 import {state} from './state'
 import {actions} from './actions'
@@ -42,8 +45,11 @@ function renderPage(state, actions) {
     case PageTypes.MENU:
       return MenuPage(actions.transitionPage)
     case PageTypes.TRANSFER:
+      return TransferPage(actions.transitionPage)
     case PageTypes.WITHDRAW:
+      return WithdrawPage(actions.transitionPage)
     case PageTypes.DEPOSIT:
+      return DepositPage(actions.transitionPage)
     case PageTypes.FOUR_OH_FOUR:
     default:
       return FourOhFour(actions.transitionPage)
