@@ -1,25 +1,7 @@
 @import url('./widgets/_index.css');
 @import url('./styles/_index.css');
 
-#root {
-  background: white;
-  padding: 1em;
-  border-radius: 16px;
-  border: 2px solid #aaa;
-  background: #333;
-  box-shadow: 0px 0px 8px 0px #333;
-}
-
-#app {
-  background: white;
-  padding: 0.5em;
-  border-radius: 2px;
-  box-shadow: inset 1px 1px 12px 2px #aaa;
-  height: 520px;
-  width: 520px;
-  display: flex;
-  flex-direction: column;
-}
+@import url('./index.css');
 
 .page {
   height: 100%;

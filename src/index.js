@@ -24,15 +24,53 @@ function view(state, actions) {
     {
       id: 'app',
     },
-    [
-      headerWidget(
-        actions.logUserOut,
-        state.loggedInAccount,
-      ),
-      renderPage(state, actions),
+    atmShellView([
+      displayView(state, actions),
       cardSwiper(),
       cardInserter(),
-    ]
+      atmBranding(),
+    ])
+  )
+}
+
+function atmShellView(children) {
+  return html.div(
+    {
+      id: 'atm-shell',
+    },
+    children,
+  )
+}
+
+function displayView(state, actions) {
+  return html.div(
+    {
+      id: 'atm-display',
+    },
+    [
+      html.div({id: 'atm-reflection'}),
+      html.div(
+        {
+          id: 'atm-screen',
+        },
+        [
+          headerWidget(
+            actions.logUserOut,
+            state.loggedInAccount,
+          ),
+          renderPage(state, actions),
+        ],
+      ),
+    ],
+  )
+}
+
+function atmBranding() {
+  return html.div(
+    {
+      id: 'atm-branding',
+    },
+    'Iron Bank of Braavos',
   )
 }
 
