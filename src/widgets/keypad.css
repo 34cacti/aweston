@@ -1,0 +1,17 @@
+#widget-keypad {
+  transform: perspective(300px) rotateX(75deg);
+}
+
+.keypad-row {
+  margin: 8px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.keypad-key {
+  width: 64px;
+  height: 48px;
+  margin: 4px;
+  border: 1px solid #aaa;
+  box-shadow: 0 0 4px #000;
+}

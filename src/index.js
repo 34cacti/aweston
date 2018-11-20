@@ -16,6 +16,7 @@ import {state} from './state'
 import {actions} from './actions'
 import cardSwiper from './widgets/card-swiper'
 import cardInserter from './widgets/card-inserter'
+import keypad from './widgets/keypad'
 
 const logger = getLogger('main')
 
@@ -29,6 +30,7 @@ function view(state, actions) {
       cardSwiper(),
       cardInserter(),
       atmBranding(),
+      keypad(),
     ])
   )
 }
@@ -57,6 +59,7 @@ function displayView(state, actions) {
           headerWidget(
             actions.logUserOut,
             state.loggedInAccount,
+            state.page,
           ),
           renderPage(state, actions),
         ],

@@ -1,6 +1,5 @@
 import * as html from '@hyperapp/html'
 
-import keypad from '../widgets/keypad'
 import {PageTypes} from '../pages'
 
 export default function view(loginUser) {
@@ -12,10 +11,16 @@ export default function view(loginUser) {
     [
       html.div([
         html.h3('Please enter pin'),
-        keypad(),
         html.input(
           {
             type: 'password',
+            oncreate: el => {
+              el.focus()
+            },
+            onkeydown: ev => {
+              if (ev.code === 'Enter')
+                loginUser()
+            },
           },
         ),
         html.button(

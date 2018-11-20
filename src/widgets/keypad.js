@@ -9,6 +9,7 @@ export default function view() {
       keyRow(1, 2, 3),
       keyRow(5, 6, 7),
       keyRow(8, 9, 0),
+      keyRow(null, 0, null),
     ],
   )
 }
@@ -16,17 +17,17 @@ export default function view() {
 function keyRow(k1, k2, k3) {
   return html.div(
     {
-      class: 'flex flex-row flex-justify-center',
+      class: 'keypad-row',
     },
     [k1, k2, k3].map(key),
   )
 }
 
 function key(k) {
-  return html.div(
+  return html.button(
     {
-      class: 'widget-key',
+      class: 'keypad-key',
     },
-    html.button(k)
+    k
   )
 }

@@ -14,7 +14,7 @@ export default function view(requestPageTransition) {
           html.h3('Menu'),
           html.div(
             {
-              class: 'flex flex-column',
+              class: '',
             },
             [
               html.button(

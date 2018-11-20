@@ -1,0 +1,19 @@
+#widget-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.header-col {
+  width: 33%;
+  display: flex;
+  justify-content: center;
+}
+
+#header-account {
+  justify-content: flex-start;
+}
+
+#header-logout {
+  justify-content: flex-end;
+}

@@ -1,9 +1,9 @@
 export const PageTypes = Object.freeze({
-  WELCOME: 'welcome',
-  LOGIN: 'login',
-  MENU: 'menu',
-  TRANSFER: 'transfer',
-  DEPOSIT: 'deposit',
-  WITHDRAW: 'withdraw',
+  WELCOME: 'Welcome',
+  LOGIN: 'Login',
+  MENU: 'Menu',
+  TRANSFER: 'Transfer',
+  DEPOSIT: 'Deposit',
+  WITHDRAW: 'Withdraw',
   FOUR_OH_FOUR: '404',
 })
