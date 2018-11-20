@@ -1,0 +1,40 @@
+#card-swiper-widget {
+  position: absolute;
+  height: 200px;
+  width: 29px;
+  left: 985px;
+  bottom: 120px;
+  padding: 4px;
+  display: flex;
+  border-radius: 16px;
+  border: 2px solid #333;
+  box-shadow: 0px 0px 8px 0px #333;
+  overflow: hidden;
+
+  background: url('../../res/zig.jpg');
+  background-size: cover;
+  background-position-x: 75px;
+}
+#card-swiper-widget::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 8px;
+  background: #666;
+  border-left: 8px solid #555;
+  border-top-right-radius: 75%;
+}
+#card-swiper-widget::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 8px;
+  background: #666;
+  border-right: 8px solid #555;
+  border-top-left-radius: 75%;
+  filter: contrast(-1);
+}

@@ -1,0 +1,12 @@
+#card-inserter-widget {
+  position: absolute;
+  left: 750px;
+  bottom: 30px;
+  width: 200px;
+  padding: 2px;
+  background: #000;
+  border: 4px solid #333;
+  border-bottom: 4px solid #555;
+  border-left: 4px solid #555;
+  border-radius: 4px;
+}
