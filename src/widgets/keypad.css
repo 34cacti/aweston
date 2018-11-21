@@ -37,6 +37,8 @@
 
 .keypad-key-green {
   background: #5b5;
+  color: #6c6;
+  text-shadow: 0 0 2px #33333388;
 }
 .keypad-key-green:hover {
   background: #4a4;
@@ -45,6 +47,8 @@
 
 .keypad-key-red {
   background: #b55;
+  color: #c66;
+  text-shadow: 0 0 2px #33333388;
 }
 .keypad-key-red:hover {
   background: #a44;
