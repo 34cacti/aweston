@@ -5,6 +5,17 @@
   justify-content: center;
   align-items: flex-end;
 }
+#app:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: url('https://i.pinimg.com/originals/79/85/8a/79858ad4649f11f37ad018592e0bb764.jpg');
+  background-size: 2000px;
+  filter: contrast(1.3) brightness(0.85) saturate(0.4);
+}
 
 #atm-shell {
   width: 640px;
@@ -13,16 +24,30 @@
   justify-content: center;
   align-items: flex-start;
   background: #888;
-  padding: 24px 96px 96px 24px;
+  padding: 24px 64px 96px 24px;
   border-radius: 8px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
   position: relative;
+  border: 4px solid #8c8c8c;
+  border-bottom: none;
+  box-shadow: inset 0 0 16px #333333, 0 0 64px 16px #212121f3;
+}
+#atm-shell:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: url('https://www.filterforge.com/filters/9926.jpg');
+  background-size: 400px;
+  opacity: 0.25;
 }
 
 #atm-display {
   position: relative;
-  height: 512px;
+  height: 420px;
   width: 100%;
   background: #333;
   border-radius: 16px;
@@ -47,7 +72,7 @@
   width: 100%;
   background: url('../res/reflection.jpg');
   background-size: cover;
-  background-position-x: -200px;
+  background-position-x: 0;
   opacity: 0.075;
   pointer-events: none;
   position: absolute;
@@ -57,29 +82,33 @@
 
 #atm-branding {
   position: absolute;
-  top: -3px;
+  bottom: 0;
   right: 8px;
-  color: #555;
+  color: #d0d0d0;
   font-family: serif;
   font-weight: bold;
-  font-size: 20px;
-  text-shadow: 0 0 4px #11111150, -1px 1px 0px #aaa;
+  font-size: 30px;
+  text-shadow: 0 0 4px #333, -1px 1px 0px #000;
+  pointer-events: none;
 }
 
 #atm-shell > #card-swiper-widget {
   position: absolute;
-  right: 55px;
-  bottom: 180px
+  right: 15px;
+  bottom: 310px
 }
 
 #atm-shell > #card-inserter-widget {
   position: absolute;
   right: 115px;
-  bottom: 145px
+  bottom: 215px
 }
 
 #atm-shell > #widget-keypad {
   position: absolute;
-  width: 320px;
-  bottom: -50px;
+  width: 280px;
+  height: 280px;
+  bottom: -5px;
+  left: 40px;
+  transform: scale(0.75);
 }

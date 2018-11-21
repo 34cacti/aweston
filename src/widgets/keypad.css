@@ -1,5 +1,12 @@
 #widget-keypad {
-  transform: perspective(300px) rotateX(75deg);
+  /* transform: perspective(1500px) rotateX(55deg); */
+  border: 2px solid #888;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0px 0px 16px #3333332f;
 }
 
 .keypad-row {
@@ -12,6 +19,34 @@
   width: 64px;
   height: 48px;
   margin: 4px;
-  border: 1px solid #aaa;
+  border: 1px solid #ccc;
   box-shadow: 0 0 4px #000;
+  background: #aaa;
+  font-weight: bold;
+  font-size: 24px;
+  color: black;
+
+  /* https://uigradients.com/#Zinc */
+  background: linear-gradient(to top right, #ada996, #f2f2f2, #dbdbdb, #eaeaea);
+
+}
+.keypad-key:hover {
+  border: 2px solid #ccc;
+  box-shadow: 0 0 1px #333;
+}
+
+.keypad-key-green {
+  background: #5b5;
+}
+.keypad-key-green:hover {
+  background: #4a4;
+  border: 2px solid #5b5;
+}
+
+.keypad-key-red {
+  background: #b55;
+}
+.keypad-key-red:hover {
+  background: #a44;
+  border: 2px solid #b55;
 }

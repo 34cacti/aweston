@@ -9,7 +9,7 @@ export default function view() {
       keyRow(1, 2, 3),
       keyRow(5, 6, 7),
       keyRow(8, 9, 0),
-      keyRow(null, 0, null),
+      keyRow('X', 0, 'O'),
     ],
   )
 }
@@ -26,7 +26,16 @@ function keyRow(k1, k2, k3) {
 function key(k) {
   return html.button(
     {
-      class: 'keypad-key',
+      class: `
+        keypad-key
+        ${
+          k === 'O'
+            ? 'keypad-key-green'
+            : k === 'X'
+              ? 'keypad-key-red'
+              : ''
+        }
+      `,
     },
     k
   )
