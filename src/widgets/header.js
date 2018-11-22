@@ -17,7 +17,7 @@ export default function view(
         },
         account ? `Hi, ${account.holder}` : null
       ),
-      html.div({class: 'header-col'}, currentPage),
+      html.div({id: 'header-title', class: 'header-col'}, currentPage),
       html.div(
         {
           id: 'header-logout',

@@ -24,7 +24,8 @@
   background: #aaa;
   font-weight: bold;
   font-size: 24px;
-  color: black;
+  color: #555;
+  text-shadow: -1px 1px 12px #888;
 
   /* https://uigradients.com/#Zinc */
   background: linear-gradient(to top right, #ada996, #f2f2f2, #dbdbdb, #eaeaea);
