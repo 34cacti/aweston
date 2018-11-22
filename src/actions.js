@@ -1,4 +1,5 @@
 import {PageTypes} from './pages'
+import {DeviceStates} from './device-states'
 import {getLogger} from './logger'
 
 const logger = getLogger('actions')
@@ -27,6 +28,16 @@ export const actions = {
     return {
       ...state,
       loggedInAccount: {number: 12334234, holder: 'lkdsjfaskdljf'},
+    }
+  },
+
+  onCardInserterClick: () => (state, actions) => {
+    logger.log('Card insters click')
+    return {
+      ...state,
+      cardInserterState: state.cardInserterState === DeviceStates.IDLE
+        ? DeviceStates.WAITING_FOR_USER
+        : DeviceStates.IDLE,
     }
   },
 }

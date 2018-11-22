@@ -30,3 +30,16 @@
   border-radius: 100%;
   clip: rect(20px, 80px, 40px, 0);
 }
+
+#card-inserter-indicator {
+  position: absolute;
+  width: 150px;
+  height: 4px;
+  bottom: -30px;
+  left: -4px;
+  box-shadow: inset -1px 1px 1px #999;
+}
+
+.card-inserter-waiting-for-user {
+  outline: 4px dashed yellow;
+}
