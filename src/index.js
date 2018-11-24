@@ -86,7 +86,7 @@ function renderPage(state, actions) {
     case PageTypes.MENU:
       return MenuPage(actions.transitionPage)
     case PageTypes.TRANSFER:
-      return TransferPage(actions.transitionPage)
+      return TransferPage(actions.transitionPage, state.loggedInAccount)
     case PageTypes.WITHDRAW:
       return WithdrawPage(actions.transitionPage)
     case PageTypes.DEPOSIT:

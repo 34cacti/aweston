@@ -27,7 +27,15 @@ export const actions = {
     setTimeout(() => actions.transitionPage(PageTypes.MENU), 0)
     return {
       ...state,
-      loggedInAccount: {number: 12334234, holder: 'lkdsjfaskdljf'},
+      loggedInAccount: {
+        number: 12334234,
+        holder: 'lkdsjfaskdljf',
+        accounts: {
+          Checking: 12.91,
+          Savings: 234.33,
+          TFSA: 3243.54,
+        },
+      },
     }
   },
 
