@@ -2,7 +2,7 @@ import * as html from '@hyperapp/html'
 import {app as hyperapp} from 'hyperapp'
 import devtools from 'hyperapp-redux-devtools'
 
-import {PageTypes} from './pages'
+import {PageTypes} from './types/pages'
 import {getLogger} from './logger'
 import WelcomePage from './pages/welcome'
 import MenuPage from './pages/menu'
@@ -27,7 +27,7 @@ function view(state, actions) {
     },
     atmShellView([
       displayView(state, actions),
-      cardSwiper(state.cardInserterState, actions.onCardInserterClick),
+      cardSwiper(state.cardSwiperState, actions.onCardSwiperClick),
       cardInserter(state.cardInserterState, actions.onCardInserterClick),
       atmBranding(),
       keypad(),
@@ -83,7 +83,7 @@ function renderPage(state, actions) {
     case PageTypes.WELCOME:
       return WelcomePage(actions.transitionPage)
     case PageTypes.LOGIN:
-      return LoginPage(actions.logUserIn)
+      return LoginPage(state.loginPageState, actions.verifyPin)
     case PageTypes.MENU:
       return MenuPage(actions.transitionPage, state.loggedInAccount)
     case PageTypes.TRANSFER:
