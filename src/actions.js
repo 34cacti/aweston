@@ -1,18 +1,14 @@
-import {PageTypes} from './pages'
-import {DeviceStates} from './device-states'
+import {PageTypes} from './types/pages'
+import {DeviceStates} from './types/device-states'
+import {LoginStates} from './types/login-states'
 import {getLogger} from './logger'
+import {initialLoginState, fakeAccount} from './state'
 
 const logger = getLogger('actions')
 
-export const actions = {
-  transitionPage: (page = PageTypes.FOUR_OH_FOUR) => (state, actions) => {
-    logger.log(`Transitioning page: ${state.page} -> ${page}`)
-    return {
-      ...state,
-      page,
-    }
-  },
+const CARD_FAILURE_RATE = 0.25
 
+const loginActions = {
   logUserOut: () => (state, actions) => {
     logger.log('Logging user out')
     setTimeout(() => actions.transitionPage(PageTypes.WELCOME), 0)
@@ -27,36 +23,88 @@ export const actions = {
     setTimeout(() => actions.transitionPage(PageTypes.MENU), 0)
     return {
       ...state,
-      loggedInAccount: {
-        number: 12334234,
-        holder: 'lkdsjfaskdljf',
-        accounts: {
-          Checking: 12.91,
-          Savings: 234.33,
-          TFSA: 3243.54,
-        },
+      loggedInAccount: fakeAccount(),
+      loginPageState: initialLoginState(),
+      cardSwiperState: DeviceStates.IDLE,
+      cardInserterState: DeviceStates.IDLE,
+    }
+  },
+
+  loginFailed: reason => (state, actions) => {
+    return {
+      ...state,
+      loginPageState: {
+        ...state.loginPageState,
+        currentMode: LoginStates.INITIAL,
+        attempts: state.loginPageState + 1,
+        message: reason,
+      },
+      cardSwiperState: DeviceStates.IDLE,
+      cardInserterState: DeviceStates.IDLE,
+    }
+  },
+
+  verifyPin: () => (state, actions) => {
+    logger.log('Verifying pin')
+    setTimeout(
+      () => {
+        if (Math.random() < CARD_FAILURE_RATE)
+          return actions.loginFailed('Failed to verify. Please try again')
+
+        return actions.logUserIn()
+      },
+      cardVerificationTime()
+    )
+
+    return {
+      ...state,
+      loginPageState: {
+        ...state.loginPageState,
+        currentMode: LoginStates.VERIFYING,
       },
     }
   },
 
   onCardInserterClick: () => (state, actions) => {
-    logger.log('Card insters click')
+    if (state.page !== PageTypes.LOGIN)
+      return
+
+    logger.log('Card inserted')
+    setTimeout(() => actions.verifyPin())
     return {
       ...state,
-      cardInserterState: state.cardInserterState === DeviceStates.IDLE
-        ? DeviceStates.WAITING_FOR_USER
-        : DeviceStates.IDLE,
+      cardInserterState: DeviceStates.PROCESSING,
     }
   },
 
-  onCashRetrievalClick: () => (state, actions) => {
-    logger.log('Card insters click')
+  onCardSwiperClick: () => (state, actions) => {
+    if (state.page !== PageTypes.LOGIN)
+      return
+
+    logger.log('Card swiped')
+    setTimeout(() => actions.verifyPin())
     return {
       ...state,
-      cashSlotState: state.cashSlotState === DeviceStates.IDLE
-        ? DeviceStates.WAITING_FOR_USER
-        : DeviceStates.IDLE,
+      cardSwiperState: DeviceStates.PROCESSING,
     }
   },
 
+}
+
+export const actions = {
+  transitionPage: (page = PageTypes.FOUR_OH_FOUR) => (state, actions) => {
+    logger.log(`Transitioning page: ${state.page} -> ${page}`)
+    return {
+      ...state,
+      page,
+    }
+  },
+
+  ...loginActions,
+}
+
+function cardVerificationTime() {
+  const BASE_VERIFICATION_TIME = 1000
+  const factor = Math.random() * 0.5 + 0.75
+  return factor * BASE_VERIFICATION_TIME
 }

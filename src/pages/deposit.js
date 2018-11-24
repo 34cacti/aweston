@@ -1,6 +1,6 @@
 import * as html from '@hyperapp/html'
 
-import {PageTypes} from '../pages'
+import {PageTypes} from '../types/pages'
 
 export default function view(requestPageTransition, account) {
   if (account === null) {
