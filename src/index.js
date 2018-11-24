@@ -61,7 +61,7 @@ function displayView(state, actions) {
           headerWidget(
             actions.logUserOut,
             // TODO: Add back button to transfer, withdraw and deposit pages
-            null
+            null,
             state.page,
           ),
           renderPage(state, actions),
