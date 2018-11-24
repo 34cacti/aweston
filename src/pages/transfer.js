@@ -5,7 +5,7 @@ import {PageTypes} from '../pages'
 export default function view(requestPageTransition, account) {
   if (account === null) {
     requestPageTransition(PageTypes.WELCOME)
-    return null;
+    return null
   }
 
   return html.div(

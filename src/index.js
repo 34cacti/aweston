@@ -58,7 +58,8 @@ function displayView(state, actions) {
         [
           headerWidget(
             actions.logUserOut,
-            state.loggedInAccount,
+            // TODO: Add back button to transfer, withdraw and deposit pages
+            null,
             state.page,
           ),
           renderPage(state, actions),
@@ -84,13 +85,13 @@ function renderPage(state, actions) {
     case PageTypes.LOGIN:
       return LoginPage(actions.logUserIn)
     case PageTypes.MENU:
-      return MenuPage(actions.transitionPage)
+      return MenuPage(actions.transitionPage, state.loggedInAccount)
     case PageTypes.TRANSFER:
       return TransferPage(actions.transitionPage, state.loggedInAccount)
     case PageTypes.WITHDRAW:
-      return WithdrawPage(actions.transitionPage)
+      return WithdrawPage(actions.transitionPage, state.loggedInAccount)
     case PageTypes.DEPOSIT:
-      return DepositPage(actions.transitionPage)
+      return DepositPage(actions.transitionPage, state.loggedInAccount)
     case PageTypes.FOUR_OH_FOUR:
     default:
       return FourOhFour(actions.transitionPage)

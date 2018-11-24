@@ -2,7 +2,7 @@ import * as html from '@hyperapp/html'
 
 import {PageTypes} from '../pages'
 
-export default function view(requestPageTransition) {
+export default function view(requestPageTransition, account) {
   return html.div(
     {
       id: 'page-menu',
@@ -11,10 +11,8 @@ export default function view(requestPageTransition) {
     [
       html.div(
         [
-          html.h3('Menu'),
           html.div(
             {
-              class: '',
             },
             [
               html.button(
