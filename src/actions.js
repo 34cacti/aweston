@@ -48,4 +48,15 @@ export const actions = {
         : DeviceStates.IDLE,
     }
   },
+
+  onCashRetrievalClick: () => (state, actions) => {
+    logger.log('Card insters click')
+    return {
+      ...state,
+      cashSlotState: state.cashSlotState === DeviceStates.IDLE
+        ? DeviceStates.WAITING_FOR_USER
+        : DeviceStates.IDLE,
+    }
+  },
+
 }

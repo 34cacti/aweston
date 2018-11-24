@@ -17,6 +17,7 @@ import {actions} from './actions'
 import cardSwiper from './widgets/card-swiper'
 import cardInserter from './widgets/card-inserter'
 import keypad from './widgets/keypad'
+import cashSlot from './widgets/cash-slot'
 
 const logger = getLogger('main')
 
@@ -29,6 +30,7 @@ function view(state, actions) {
       displayView(state, actions),
       cardSwiper(state.cardInserterState, actions.onCardInserterClick),
       cardInserter(state.cardInserterState, actions.onCardInserterClick),
+      cashSlot(state.cashSlotState, actions.onCashRetrievalClick),
       atmBranding(),
       keypad(),
     ])
@@ -59,7 +61,7 @@ function displayView(state, actions) {
           headerWidget(
             actions.logUserOut,
             // TODO: Add back button to transfer, withdraw and deposit pages
-            null,
+            null
             state.page,
           ),
           renderPage(state, actions),
