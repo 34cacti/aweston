@@ -27,7 +27,7 @@ function view(state, actions) {
     },
     atmShellView([
       displayView(state, actions),
-      cardSwiper(),
+      cardSwiper(state.cardInserterState, actions.onCardInserterClick),
       cardInserter(state.cardInserterState, actions.onCardInserterClick),
       atmBranding(),
       keypad(),

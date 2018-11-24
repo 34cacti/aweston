@@ -1,5 +1,6 @@
-import {DeviceStates} from '../device-states'
 import * as html from '@hyperapp/html'
+
+import {DeviceStates} from '../device-states'
 
 export default function view(deviceState, onclick = () => {}) {
   return html.div(

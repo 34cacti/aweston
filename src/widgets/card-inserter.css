@@ -7,6 +7,8 @@
   border-bottom: 4px solid #555;
   border-left: 4px solid #555;
   border-radius: 4px;
+  z-index: 0;
+  cursor: pointer;
 }
 #card-inserter-widget:before {
   content: '';
@@ -18,6 +20,7 @@
   background: #333;
   border-radius: 100%;
   clip: rect(0, 80px, 20px, 0);
+  z-index: -1;
 }
 #card-inserter-widget:after {
   content: '';
@@ -29,6 +32,7 @@
   background: #555;
   border-radius: 100%;
   clip: rect(20px, 80px, 40px, 0);
+  z-index: -1;
 }
 
 #card-inserter-indicator {
@@ -38,8 +42,9 @@
   bottom: -30px;
   left: -4px;
   box-shadow: inset -1px 1px 1px #999;
+  cursor: default;
 }
 
 .card-inserter-waiting-for-user {
-  outline: 4px dashed yellow;
+  /* outline: 4px dashed yellow; */
 }
