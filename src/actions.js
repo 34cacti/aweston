@@ -39,8 +39,8 @@ const loginActions = {
         attempts: state.loginPageState + 1,
         message: reason,
       },
-      cardSwiperState: DeviceStates.IDLE,
-      cardInserterState: DeviceStates.IDLE,
+      cardSwiperState: DeviceStates.WAITING_FOR_USER,
+      cardInserterState: DeviceStates.WAITING_FOR_USER,
     }
   },
 
@@ -94,8 +94,20 @@ const loginActions = {
 export const actions = {
   transitionPage: (page = PageTypes.FOUR_OH_FOUR) => (state, actions) => {
     logger.log(`Transitioning page: ${state.page} -> ${page}`)
+
+    const deviceStates = page === PageTypes.LOGIN
+      ? {
+          cardSwiperState: DeviceStates.WAITING_FOR_USER,
+          cardInserterState: DeviceStates.WAITING_FOR_USER,
+        }
+      : {
+          cardSwiperState: state.cardSwiperState,
+          cardInserterState: state.cardInserterState,
+        }
+
     return {
       ...state,
+      ...deviceStates,
       page,
     }
   },
