@@ -64,6 +64,9 @@
   box-shadow: inset 1px 1px 12px 2px #aaa;
   padding: 8px;
   border-radius: 8px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 #atm-reflection {
