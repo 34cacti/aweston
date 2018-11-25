@@ -9,27 +9,26 @@ export default function view(requestPageTransition, account) {
       class: 'page',
     },
     [
-      html.div(
-        [
-          html.div(
-            {
-            },
-            [
-              html.button(
-                {onclick: () => requestPageTransition(PageTypes.TRANSFER)},
-                'Transfer'
-              ),
-              html.button(
-                {onclick: () => requestPageTransition(PageTypes.DEPOSIT)},
-                'Deposit'
-              ),
-              html.button(
-                {onclick: () => requestPageTransition(PageTypes.WITHDRAW)},
-                'Withdraw'
-              ),
-            ]
-          ),
-        ],
+      html.button(
+        {
+          class: 'menu-button',
+          onclick: () => requestPageTransition(PageTypes.TRANSFER),
+        },
+        'Transfer'
+      ),
+      html.button(
+        {
+          class: 'menu-button',
+          onclick: () => requestPageTransition(PageTypes.DEPOSIT)
+        },
+        'Deposit'
+      ),
+      html.button(
+        {
+          class: 'menu-button',
+          onclick: () => requestPageTransition(PageTypes.WITHDRAW)
+        },
+        'Withdraw'
       ),
     ],
   )

@@ -2,6 +2,7 @@ import * as html from '@hyperapp/html'
 
 import {PageTypes} from '../types/pages'
 import {LoginStates} from '../types/login-states'
+import loadingIcon from '../widgets/loading-icon'
 
 export default function view(state, logUserIn) {
   return html.div(
@@ -63,21 +64,21 @@ function credentialForms(logUserIn) {
         },
       ),
 
-      html.button(
-        {
-          class: 'btn',
-          onclick: () => logUserIn(),
-        },
-        [
-          'Verify Pin',
-        ]
-      ),
+      html.button('Verify Pin'),
     ],
   )
 }
 
 function verifyingView() {
-  return html.div('Verifying. Please wait...')
+  return html.div(
+    {
+      class: 'login-verifying',
+    },
+    [
+      html.div('Verifying. Please wait...'),
+      loadingIcon(),
+    ]
+  )
 }
 
 function onSubmit(ev, logUserIn) {
