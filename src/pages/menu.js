@@ -1,6 +1,7 @@
 import * as html from '@hyperapp/html'
 
 import {PageTypes} from '../types/pages'
+import accountActivity from '../widgets/account-activity'
 
 export default function view(requestPageTransition, account) {
   return html.div(
@@ -9,6 +10,9 @@ export default function view(requestPageTransition, account) {
       class: 'page',
     },
     [
+      html.div(`Hi ${account.holder}`),
+      accountActivity(account.activity),
+      html.hr(),
       html.button(
         {
           class: 'very-large-button',

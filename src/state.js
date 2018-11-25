@@ -28,5 +28,11 @@ export function fakeAccount() {
       Savings: 234.33,
       TFSA: 3243.54,
     },
+    activity: [
+      {account: 'Savings', withdraw: null, deposit: 323.21, date: 'Feb 11, 2018'},
+      {account: 'Checking', withdraw: null, deposit: 323.21, date: 'Feb 08, 2018'},
+      {account: 'TFSA', withdraw: null, deposit: 119.00, date: 'Jan 31, 2018'},
+      {account: 'Checking', withdraw: 12.99, deposit: null, date: 'Jan 31, 2018'},
+    ],
   }
 }

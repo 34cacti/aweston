@@ -4,3 +4,10 @@
   justify-content: center;
   align-items: center;
 }
+#page-menu > * {
+  margin-bottom: 12px;
+}
+
+#page-menu hr {
+  width: 80%;
+}
