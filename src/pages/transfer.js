@@ -10,38 +10,29 @@ export default function view(requestPageTransition, account) {
 
   return html.div(
     {
-      id: 'page-transfer',
+      id: 'page-deposit',
       class: 'page',
     },
-    [
-      html.div(
-        [
-          html.select(
-            {
-              onchange: ev => console.log(ev),
-            },
-            Object.keys(account.accounts).map(
-              accountName =>
-                html.option(
-                  {value: accountName},
-                  `${accountName}  $${account.accounts[accountName]}`
-                )
-            )
-          ),
-          html.button(
-            {onclick: () => requestPageTransition(PageTypes.MENU)},
-            'Click to continue to Menu Screen',
-          ),
-          transferForms(account),
-        ]
-      ),
-    ],
+    transferForms(account),
   )
 }
 
 function transferForms(account) {
     return html.form(
     [
+    html.label('From'),
+        html.select(
+     {
+       onchange: ev => console.log(ev),
+     },
+     Object.keys(account.accounts).map(
+       accountName =>
+         html.option(
+           {value: accountName},
+           `${accountName}  $${account.accounts[accountName]}`
+         )
+        )
+      ),
     html.label('To'), 
     html.select(
      {
@@ -65,14 +56,7 @@ function transferForms(account) {
         },
       ),
 
-      html.button(
-        {
-          class: 'btn',
-        },
-        [
-          'Transfer',
-        ]
-      ),
+      html.button("Transfer"),
     ],
   )
 }

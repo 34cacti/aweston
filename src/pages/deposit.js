@@ -12,34 +12,26 @@ export default function view(requestPageTransition, account) {
       id: 'page-deposit',
       class: 'page',
     },
-    [
-      html.div(
-        [
-          html.select(
-            {
-              onchange: ev => console.log(ev),
-            },
-            Object.keys(account.accounts).map(
-              accountName =>
-              html.option(
-                {value: accountName},
-                `${accountName}  $${account.accounts[accountName]}`
-              )
-            )
-          ),
-          html.button(
-            {onclick: () => requestPageTransition(PageTypes.MENU)},
-            'Click to continue to Menu Screen',
-          ),
-          depositForms(),
-        ]
-      ),
-    ],
+    depositForms(account),
   )
 }
-function depositForms() {
-    return html.form(
+
+function depositForms(account) {
+  return html.form(
     [
+      html.label('To'),
+      html.select(
+      {
+        onchange: ev => console.log(ev),
+        },
+      Object.keys(account.accounts).map(
+        accountName =>
+          html.option(
+            {value: accountName},
+            `${accountName}  $${account.accounts[accountName]}`
+            )
+          )
+      ),
       html.label('Enter Amount'),
       html.input(
         {
@@ -49,15 +41,7 @@ function depositForms() {
           },
         },
       ),
-
-      html.button(
-        {
-          class: 'btn',
-        },
-        [
-          'Deposit',
-        ]
-      ),
+      html.button("Deposit"),
     ],
   )
 }
