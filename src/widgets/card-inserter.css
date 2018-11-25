@@ -45,6 +45,20 @@
   cursor: default;
 }
 
+#card-inserter-icon {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  bottom: -30px;
+  left: 155px;
+  box-shadow: inset -1px 1px 1px #999;
+  cursor: default;
+  opacity: 0.6;
+  background: url('../../res/card_insert.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .card-inserter-waiting-for-user {
   /* outline: 4px dashed yellow; */
 }

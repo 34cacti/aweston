@@ -12,6 +12,7 @@ export default function view(deviceState, onclick = () => {}) {
       onclick: () => onclick(),
     },
     [
+      html.div({ id: 'card-swiper-icon' }),
       html.div(
         {
           id: 'card-swiper-indicator',
