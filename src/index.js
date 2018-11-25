@@ -59,7 +59,7 @@ function displayView(state, actions) {
         },
         [
           headerWidget(
-            actions.logUserOut,
+            createLogoutButton(state.page, actions.transitionPage),
             // TODO: Add back button to transfer, withdraw and deposit pages
             createGoBackButton(state.page, actions.transitionPage),
             state.page,
@@ -106,6 +106,18 @@ function createGoBackButton(page, transitionPage) {
     case PageTypes.DEPOSIT:
     case PageTypes.WITHDRAW:
       return () => transitionPage(PageTypes.MENU)
+    default:
+      return null
+  }
+}
+
+function createLogoutButton(page, transitionPage) {
+  switch (page) {
+    case PageTypes.MENU:
+    case PageTypes.TRANSFER:
+    case PageTypes.WITHDRAW:
+    case PageTypes.DEPOSIT:
+      return () => transitionPage(PageTypes.WELCOME)
     default:
       return null
   }
