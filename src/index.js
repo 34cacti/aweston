@@ -99,11 +99,11 @@ function renderPage(state, actions) {
 }
 
 function createGoBackButton(page, transitionPage) {
-  switch(page) {
+  switch (page) {
     case PageTypes.TRANSFER:
     case PageTypes.DEPOSIT:
     case PageTypes.WITHDRAW:
-      return () => actions.transitionPage(pageTypes.MENU)
+      return () => transitionPage(PageTypes.MENU)
     default:
       return null
   }
