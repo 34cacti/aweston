@@ -61,7 +61,7 @@ function displayView(state, actions) {
           headerWidget(
             actions.logUserOut,
             // TODO: Add back button to transfer, withdraw and deposit pages
-            null,
+            createGoBackButton(state.page, actions.transitionPage),
             state.page,
           ),
           renderPage(state, actions),
@@ -97,6 +97,17 @@ function renderPage(state, actions) {
     case PageTypes.FOUR_OH_FOUR:
     default:
       return FourOhFour(actions.transitionPage)
+  }
+}
+
+function createGoBackButton(page, transitionPage) {
+  switch (page) {
+    case PageTypes.TRANSFER:
+    case PageTypes.DEPOSIT:
+    case PageTypes.WITHDRAW:
+      return () => transitionPage(PageTypes.MENU)
+    default:
+      return null
   }
 }
 
