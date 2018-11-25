@@ -27,6 +27,32 @@ export default function view(requestPageTransition, account) {
             {onclick: () => requestPageTransition(PageTypes.MENU)},
             'Click to continue to Menu Screen',
           ),
+          withdrawForms(),
+        ]
+      ),
+    ],
+  )
+}
+
+function withdrawForms() {
+    return html.form(
+    [
+      html.label('Enter Amount'),
+      html.input(
+        {
+          oncreate: el => {
+            el.focus()
+            el.value = '$20.00'
+          },
+        },
+      ),
+
+      html.button(
+        {
+          class: 'btn',
+        },
+        [
+          'Withdraw',
         ]
       ),
     ],
