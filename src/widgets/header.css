@@ -2,22 +2,26 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
+  margin-bottom: 16px;
 }
 
 .header-col {
   width: 33%;
   display: flex;
-  justify-content: center;
 }
 
-#header-account {
+#widget-header > *:first-child {
   justify-content: flex-start;
 }
 
-#header-title {
+#widget-header > *:nth-child(2) {
+  justify-content: flex-start;
   font-weight: bold;
+  justify-content: center;
 }
 
-#header-logout {
-  justify-content: flex-end;
+#widget-header > *:last-child {
+  /* NOTE: Reverse ordering so that the elements are right aligned */
+  justify-content: flex-start;
+  flex-direction: row-reverse;
 }

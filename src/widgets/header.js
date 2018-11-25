@@ -27,8 +27,9 @@ export default function view(
           class: 'header-col',
         },
         [
-          html.button({onclick: () => {}}, 'EN'),
+          // NOTE: Reverse order of element, but styling will render in the other order
           logUserOut ? logoutButton(() => logUserOut()) : null,
+          html.button({onclick: () => {}}, 'EN'),
         ]
       ),
     ]
@@ -40,5 +41,5 @@ function logoutButton(onclick) {
 }
 
 function goBackButton(onclick) {
-  return html.button({class: 'warning', onclick}, 'Back')
+  return html.button({onclick}, 'Back')
 }
