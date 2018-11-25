@@ -7,6 +7,7 @@ import {initialLoginState, fakeAccount} from './state'
 const logger = getLogger('actions')
 
 const CARD_FAILURE_RATE = 0.25
+const BASE_VERIFICATION_TIME = 1000
 
 const loginActions = {
   logUserOut: () => (state, actions) => {
@@ -116,7 +117,6 @@ export const actions = {
 }
 
 function cardVerificationTime() {
-  const BASE_VERIFICATION_TIME = 1000
   const factor = Math.random() * 0.5 + 0.75
   return factor * BASE_VERIFICATION_TIME
 }
