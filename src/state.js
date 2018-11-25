@@ -22,7 +22,7 @@ export function initialLoginState() {
 export function fakeAccount() {
   return {
     number: 12334234,
-    holder: 'lkdsjfaskdljf',
+    holder: 'John Cena',
     accounts: {
       Checking: 12.91,
       Savings: 234.33,
@@ -32,7 +32,13 @@ export function fakeAccount() {
       {account: 'Savings', withdraw: null, deposit: 323.21, date: 'Feb 11, 2018'},
       {account: 'Checking', withdraw: null, deposit: 323.21, date: 'Feb 08, 2018'},
       {account: 'TFSA', withdraw: null, deposit: 119.00, date: 'Jan 31, 2018'},
-      {account: 'Checking', withdraw: 12.99, deposit: null, date: 'Jan 31, 2018'},
+      {account: 'Checking', withdraw: 12.99, deposit: null, date: 'Jan 11, 2018'},
+      {account: 'Checking', withdraw: 39.49, deposit: null, date: 'Dec 11, 2017'},
+      {account: 'Checking', withdraw: 10.19, deposit: null, date: 'Nov 11, 2017'},
+      {account: 'Checking', withdraw: 10.19, deposit: null, date: 'Oct 11, 2017'},
+      {account: 'Checking', withdraw: 10.19, deposit: null, date: 'Sep 11, 2017'},
+      {account: 'Checking', withdraw: 10.19, deposit: null, date: 'Aug 11, 2017'},
+      {account: 'Checking', withdraw: 10.19, deposit: null, date: 'Jul 11, 2017'},
     ],
   }
 }

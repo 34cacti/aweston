@@ -11,29 +11,33 @@ export default function view(requestPageTransition, account) {
     },
     [
       html.div(`Hi ${account.holder}`),
-      accountActivity(account.activity),
+      accountActivity(account.accounts, account.activity),
       html.hr(),
-      html.button(
+      html.div(
         {
-          class: 'very-large-button',
-          onclick: () => requestPageTransition(PageTypes.TRANSFER),
+          class: 'menu-buttons',
         },
-        'Transfer'
-      ),
-      html.button(
-        {
-          class: 'very-large-button',
-          onclick: () => requestPageTransition(PageTypes.DEPOSIT)
-        },
-        'Deposit'
-      ),
-      html.button(
-        {
-          class: 'very-large-button',
-          onclick: () => requestPageTransition(PageTypes.WITHDRAW)
-        },
-        'Withdraw'
-      ),
+        [
+          html.button(
+            {
+              onclick: () => requestPageTransition(PageTypes.TRANSFER),
+            },
+            'Transfer'
+          ),
+          html.button(
+            {
+              onclick: () => requestPageTransition(PageTypes.DEPOSIT)
+            },
+            'Deposit'
+          ),
+          html.button(
+            {
+              onclick: () => requestPageTransition(PageTypes.WITHDRAW)
+            },
+            'Withdraw'
+          ),
+        ],
+      )
     ],
   )
 }

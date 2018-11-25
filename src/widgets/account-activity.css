@@ -1,12 +1,23 @@
 #widget-account-activity {
-  max-height: 200px;
-  overflow-y: auto;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
 }
 
-#widget-account-activity table {
-  font-size: 12px;
+#widget-account-activity td, #widget-account-activity th {
+  padding: 4px 8px 4px 8px;
 }
-#widget-account-acitivty table td {
-  padding-top: 0.1em;
-  padding-bottom: 0.1em;
+#widget-account-activity tr {
+  height: 12px;
+  padding: 0;
+}
+
+#widget-account-activity .account-balances {
+  max-height: 200px;
+}
+
+#widget-account-activity .account-transactions {
+  max-height: 200px;
+  overflow-y: auto;
 }

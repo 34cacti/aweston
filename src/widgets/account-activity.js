@@ -2,35 +2,66 @@ import * as html from '@hyperapp/html'
 
 import {PageTypes} from '../types/pages'
 
-export default function view(activity) {
+export default function view(accounts, activity) {
   return html.div(
     {
       id: 'widget-account-activity',
     },
-    html.table(
-      {class: 'primary'},
-      [
-        html.thead([
-          html.tr(
-            [
-              html.th('Account'),
-              html.th('Withdraw'),
-              html.th('Deposit'),
-              html.th('Date'),
-            ]
-          ),
-        ]),
-        html.tbody([
-          activity.map(transaction =>
-            html.tr([
-              html.td(transaction.account),
-              html.td(transaction.withdraw ? `$${transaction.withdraw}` : null),
-              html.td(transaction.deposit ? `$${transaction.deposit}` : null),
-              html.td(transaction.date),
-            ])
-          ),
-        ]),
-      ]
-    ),
+    [
+      html.div({class: 'account-balances'}, balancesTable(accounts)),
+      html.div({class: 'account-transactions'}, transactionsTable(activity)),
+    ]
+  )
+}
+
+function balancesTable(accounts) {
+  return html.table(
+    {class: 'account-balances primary'},
+    [
+      html.thead([
+        html.tr(
+          [
+            html.th('Account'),
+            html.th('Balance'),
+          ]
+        ),
+      ]),
+      html.tbody([
+        Object.keys(accounts).map(account =>
+          html.tr([
+            html.td(account),
+            html.td(`$${accounts[account]}`),
+          ])
+        ),
+      ])
+    ],
+  )
+}
+
+function transactionsTable(transactions) {
+  return html.table(
+    {class: 'account-transactions primary'},
+    [
+      html.thead([
+        html.tr(
+          [
+            html.th('Account'),
+            html.th('Withdraw'),
+            html.th('Deposit'),
+            html.th('Date'),
+          ]
+        ),
+      ]),
+      html.tbody([
+        transactions.map(transaction =>
+          html.tr([
+            html.td(transaction.account),
+            html.td(transaction.withdraw ? `$${transaction.withdraw}` : null),
+            html.td(transaction.deposit ? `$${transaction.deposit}` : null),
+            html.td(transaction.date),
+          ])
+        ),
+      ]),
+    ]
   )
 }
