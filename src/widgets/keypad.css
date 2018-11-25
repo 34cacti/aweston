@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: center;
   box-shadow: inset 0px 0px 16px #3333332f;
+  pointer-events: none
 }
 
 .keypad-row {
@@ -26,32 +27,28 @@
   font-size: 24px;
   color: #555;
   text-shadow: -1px 1px 12px #888;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   /* https://uigradients.com/#Zinc */
   background: linear-gradient(to top right, #ada996, #f2f2f2, #dbdbdb, #eaeaea);
 
 }
-.keypad-key:hover {
-  border: 2px solid #ccc;
-  box-shadow: 0 0 1px #333;
-}
 
-.keypad-key-green {
+.keypad-key-enter {
   background: #5b5;
-  color: #6c6;
+  color: #333;
   text-shadow: 0 0 2px #33333388;
-}
-.keypad-key-green:hover {
-  background: #4a4;
-  border: 2px solid #5b5;
+  padding: 0;
+  font-size: 22px;
 }
 
-.keypad-key-red {
-  background: #b55;
-  color: #c66;
+.keypad-key-clear {
+  background: #dbc01a;
+  color: #333;
   text-shadow: 0 0 2px #33333388;
-}
-.keypad-key-red:hover {
-  background: #a44;
-  border: 2px solid #b55;
+  padding: 0;
+  font-size: 22px;
 }
