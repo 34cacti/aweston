@@ -11,21 +11,21 @@ export default function view(requestPageTransition, account) {
     [
       html.button(
         {
-          class: 'menu-button',
+          class: 'very-large-button',
           onclick: () => requestPageTransition(PageTypes.TRANSFER),
         },
         'Transfer'
       ),
       html.button(
         {
-          class: 'menu-button',
+          class: 'very-large-button',
           onclick: () => requestPageTransition(PageTypes.DEPOSIT)
         },
         'Deposit'
       ),
       html.button(
         {
-          class: 'menu-button',
+          class: 'very-large-button',
           onclick: () => requestPageTransition(PageTypes.WITHDRAW)
         },
         'Withdraw'
