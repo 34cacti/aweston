@@ -59,6 +59,8 @@ const loginActions = {
 
     return {
       ...state,
+      cardSwiperState: DeviceStates.IDLE,
+      cardInserterState: DeviceStates.IDLE,
       loginPageState: {
         ...state.loginPageState,
         currentMode: LoginStates.VERIFYING,
