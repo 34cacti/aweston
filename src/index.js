@@ -49,7 +49,7 @@ function atmShellView(children) {
 
 function displayView(state, actions) {
   return html.div(
-    {id: 'atm-display'},
+    {id: 'atm-display', class: 'crt-effect-container'},
     [
       html.div({id: 'atm-reflection'}),
       html.div(
