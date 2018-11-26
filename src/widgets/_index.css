@@ -6,3 +6,14 @@
 @import url('./keypad.css');
 @import url('./loading-icon.css');
 @import url('./modal.css');
+
+.indicator-flashing {
+	animation: flashing-bars 1.5s infinite;
+}
+
+@keyframes flashing-bars{
+	0% {background-color: lime;}
+	49% {background-color: lime;}
+	50% {background-color: #444;}
+	100% {background-color: #444;}
+}

@@ -6,19 +6,16 @@ export default function view(deviceState, onclick = () => {}) {
   return html.div(
     {
       id: 'card-swiper-widget',
-      class: deviceState === DeviceStates.WAITING_FOR_USER
-        ? 'card-swiper-waiting-for-user'
-        : null,
       onclick: () => onclick(),
     },
     [
       html.div({ id: 'card-swiper-icon' }),
       html.div(
         {
+          class: deviceState === DeviceStates.WAITING_FOR_USER
+            ? 'indicator-flashing'
+            : null,
           id: 'card-swiper-indicator',
-          style: {
-            background: deviceState,
-          },
         },
       ),
     ],
