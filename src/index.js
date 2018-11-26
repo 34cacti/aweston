@@ -61,7 +61,7 @@ function displayView(state, actions) {
             state.page,
             state.language,
             getLanguageSelectorModalOpenCallback(
-              actions.displayModal, state.languages, actions.setLanguage)
+              actions.displayModal, state.language, state.languages, actions.setLanguage)
           ),
           renderPage(state, actions),
           renderModal(state, actions),
@@ -120,8 +120,13 @@ function createLogoutButton(page, transitionPage) {
   }
 }
 
-function getLanguageSelectorModalOpenCallback(displayModal, languages, setLanguage) {
-  const data = [languages, setLanguage]
+function getLanguageSelectorModalOpenCallback(
+  displayModal,
+  language,
+  languages,
+  setLanguage
+) {
+  const data = [language, languages, setLanguage]
   return () => displayModal({type: ModalTypes.LANGUAGE, data})
 }
 
