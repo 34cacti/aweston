@@ -49,7 +49,7 @@ function credentialForms(logUserIn) {
         {
           oncreate: el => {
             el.focus()
-            el.value = '23478238942'
+            el.value = '2347823894215673'
           },
         },
       ),
@@ -59,7 +59,7 @@ function credentialForms(logUserIn) {
         {
           type: 'password',
           oncreate: el => {
-            el.value = 'youcantseeme'
+            el.value = 'pin#'
           },
         },
       ),
