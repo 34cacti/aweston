@@ -2,14 +2,7 @@ import {PageTypes} from './types/pages'
 import {DeviceStates} from './types/device-states'
 import {LoginStates} from './types/login-states'
 
-export const state = {
-  page: PageTypes.WELCOME,
-  loggedInAccount: null,
-  loginPageState: initialLoginState(),
-  cardInserterState: DeviceStates.IDLE,
-  cardSwiperState: DeviceStates.IDLE,
-  cashSlotState: DeviceStates.IDLE,
-}
+export const state = initialState()
 
 export function initialLoginState() {
   return {
@@ -40,5 +33,20 @@ export function fakeAccount() {
       {account: 'Checking', withdraw: 10.19, deposit: null, date: 'Aug 11, 2017'},
       {account: 'Checking', withdraw: 10.19, deposit: null, date: 'Jul 11, 2017'},
     ],
+  }
+}
+
+export function initialState() {
+  return {
+    page: PageTypes.WELCOME,
+    loggedInAccount: null,
+    loginPageState: initialLoginState(),
+    cardInserterState: DeviceStates.IDLE,
+    cardSwiperState: DeviceStates.IDLE,
+    cashSlotState: DeviceStates.IDLE,
+    displayedModal: null,
+    modalData: null,
+    language: 'EN',
+    languages: ['EN', 'FR', 'ES'],
   }
 }

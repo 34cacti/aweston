@@ -4,6 +4,8 @@ export default function view(
   logUserOut,
   goBack,
   currentPage,
+  language,
+  openLanguageSelector,
 ) {
   return html.div(
     {
@@ -29,7 +31,7 @@ export default function view(
         [
           // NOTE: Reverse order of element, but styling will render in the other order
           logUserOut ? logoutButton(() => logUserOut()) : null,
-          html.button({onclick: () => {}}, 'EN'),
+          languageSelectorButton(language, openLanguageSelector),
         ]
       ),
     ]
@@ -37,9 +39,13 @@ export default function view(
 }
 
 function logoutButton(onclick) {
-  return html.button({class: 'warning', onclick}, 'Logout')
+  return html.button({class: 'warning', style: {zIndex: 10}, onclick}, 'Logout')
 }
 
 function goBackButton(onclick) {
   return html.button({onclick}, 'Back')
+}
+
+function languageSelectorButton(language, onClick) {
+  return html.button({onclick: () => onClick()}, language)
 }

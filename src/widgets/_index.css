@@ -1,7 +1,8 @@
 @import url('./account-activity.css');
-@import url('./card-swiper.css');
 @import url('./card-inserter.css');
+@import url('./card-swiper.css');
+@import url('./cash-slot.css');
 @import url('./header.css');
 @import url('./keypad.css');
-@import url('./cash-slot.css');
 @import url('./loading-icon.css');
+@import url('./modal.css');

@@ -2,23 +2,14 @@ import {PageTypes} from './types/pages'
 import {DeviceStates} from './types/device-states'
 import {LoginStates} from './types/login-states'
 import {getLogger} from './logger'
-import {initialLoginState, fakeAccount} from './state'
+import {initialState, initialLoginState, fakeAccount} from './state'
 
 const logger = getLogger('actions')
 
-const CARD_FAILURE_RATE = 0.25
-const BASE_VERIFICATION_TIME = 1000
+const CARD_FAILURE_RATE = 0
+const BASE_VERIFICATION_TIME = 0
 
 const loginActions = {
-  logUserOut: () => (state, actions) => {
-    logger.log('Logging user out')
-    setTimeout(() => actions.transitionPage(PageTypes.WELCOME), 0)
-    return {
-      ...state,
-      loggedInAccount: null,
-    }
-  },
-
   logUserIn: () => (state, actions) => {
     logger.log('Logging in')
     setTimeout(() => actions.transitionPage(PageTypes.MENU), 0)
@@ -98,6 +89,12 @@ export const actions = {
   transitionPage: (page = PageTypes.FOUR_OH_FOUR) => (state, actions) => {
     logger.log(`Transitioning page: ${state.page} -> ${page}`)
 
+    if (page === PageTypes.WELCOME) {
+      logger.warn('Do not use transition page to go to Welcome screen. If you need to'
+                  + ' log out use the logUserOut action.')
+      return null
+    }
+
     const deviceStates = page === PageTypes.LOGIN
       ? {
           cardSwiperState: DeviceStates.WAITING_FOR_USER,
@@ -113,6 +110,35 @@ export const actions = {
       ...deviceStates,
       page,
     }
+  },
+
+  displayModal: ({type, data}) => (state, actions) => {
+    logger.log(`Opening modal ${type} with data: ${data}`)
+    return {
+      ...state,
+      displayedModal: type,
+      modalData: data,
+    }
+  },
+
+  closeModal: () => (state, actions) => {
+    return {
+      ...state,
+      displayedModal: null,
+      modalData: null,
+    }
+  },
+
+  setLanguage: language => (state, actions) => {
+    return {
+      ...state,
+      language,
+    }
+  },
+
+  logUserOut: () => (state, actions) => {
+    logger.log('Logging out')
+    return initialState()
   },
 
   ...loginActions,
