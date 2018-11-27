@@ -88,10 +88,18 @@ function renderPage(state, actions) {
       )
     case PageTypes.WITHDRAW:
       return WithdrawPage(
-        actions.transitionPage, state.loggedInAccount, actions.updatePendingTransaction)
+        actions.transitionPage,
+        state.loggedInAccount,
+        actions.updatePendingTransaction,
+        actions.performTransaction
+      )
     case PageTypes.DEPOSIT:
       return DepositPage(
-        actions.transitionPage, state.loggedInAccount, actions.updatePendingTransaction)
+        actions.transitionPage,
+        state.loggedInAccount,
+        actions.updatePendingTransaction,
+        actions.performTransaction
+      )
     case PageTypes.FOUR_OH_FOUR:
     default:
       return FourOhFour(actions.transitionPage)
