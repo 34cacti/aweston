@@ -39,6 +39,8 @@ function initialView(state, logUserIn, credentialsClick) {
 }
 
 function credentialForms(state, logUserIn, credentialsClick) {
+  const [isFormValid, warningMessage] = formValid(state)
+
   return html.form(
     {
       onsubmit: ev => onSubmit(ev, logUserIn),
@@ -63,7 +65,21 @@ function credentialForms(state, logUserIn, credentialsClick) {
         },
       ),
 
-      html.button('Verify Pin'),
+      html.div(
+        {
+          style: {
+            display: 'flex',
+          },
+        },
+        [
+        html.button(
+          {
+            disabled: !isFormValid,
+          },
+          'Deposit'
+        ),
+        warningMessage ? html.div({class: 'warning'}, warningMessage) : null,
+      ]),
     ],
   )
 }
@@ -83,4 +99,10 @@ function verifyingView() {
 function onSubmit(ev, logUserIn) {
   ev.preventDefault()
   logUserIn()
+}
+
+function formValid(state) {
+  return (state.accountNumber && state.pin)
+    ? [true, null]
+    : [false, 'Please enter account number and pin']
 }
