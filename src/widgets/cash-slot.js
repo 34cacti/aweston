@@ -6,18 +6,15 @@ export default function view(deviceState, onclick = () => {}) {
   return html.div(
     {
       id: 'cash-slot-widget',
-      class: deviceState === DeviceStates.WAITING_FOR_USER
-        ? 'cash-slot-waiting-for-user'
-        : null,
       onclick: () => onclick(),
     },
     [
       html.div(
         {
+          class: deviceState === DeviceStates.WAITING_FOR_USER
+            ? 'indicator-flashing'
+            : null,
           id: 'cash-slot-indicator',
-          style: {
-            background: deviceState,
-          },
         },
       ),
     ],

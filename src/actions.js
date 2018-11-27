@@ -210,6 +210,10 @@ export const actions = {
         }
 
       case TransactionTypes.DEPOSIT:
+        return {
+          ...actions.displayModal({type: ModalTypes.DEPOSIT_CASH, data: []}),
+        }
+        /*
         const recordDeposit = transactionRecord(transaction.to, null, ammount)
         return {
           ...state,
@@ -224,9 +228,13 @@ export const actions = {
               ...state.loggedInAccount.activity,
             ],
           },
-        }
+        }*/
  
        case TransactionTypes.WITHDRAW:
+        return{
+          ...actions.displayModal({type: ModalTypes.COLLECT_CASH, data: []}),
+        }
+        /*
         const recordWithdraw = transactionRecord(transaction.from, ammount)
         return {
           ...state,
@@ -241,7 +249,7 @@ export const actions = {
               ...state.loggedInAccount.activity,
             ],
           },
-        }
+        }*/
 
       default:
         logger.warn(`Unknown transaction type: ${transaction.type}`)
