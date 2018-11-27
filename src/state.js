@@ -16,7 +16,7 @@ export function initialLoginState() {
 
 export function fakeAccount() {
   return {
-    number: 12334234,
+    number: '5446124876258746',
     holder: 'John Cena',
     pendingTransaction: {
       type: null,

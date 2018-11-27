@@ -32,7 +32,7 @@ function initialView(state, logUserIn, credentialsClick) {
     html.h3([
       html.div('Please insert or swipe card.'),
       html.div('Alternatively you may enter account number and pin.'),
-      state ? html.div({style: 'color: red'}, state) : null,
+      state.message ? html.div({style: 'color: red'}, state.message) : null,
     ]),
     credentialForms(state, logUserIn, credentialsClick),
   ])
@@ -57,7 +57,7 @@ function credentialForms(state, logUserIn, credentialsClick) {
       html.input(
         {
           value: state.pin,
-          readonly: true, 
+          readonly: true,
           onclick: () => credentialsClick(),
           type: 'password',
         },
