@@ -1,6 +1,7 @@
 import {PageTypes} from './types/pages'
 import {DeviceStates} from './types/device-states'
 import {LoginStates} from './types/login-states'
+import {TransactionTypes} from './types/transactions'
 import {getLogger} from './logger'
 import {initialState, initialLoginState, fakeAccount} from './state'
 
@@ -141,10 +142,70 @@ export const actions = {
     return initialState()
   },
 
+  updatePendingTransaction: data => (state, actions) => {
+    return {
+      loggedInAccount: {
+        ...state.loggedInAccount,
+        pendingTransaction: {
+          ...state.loggedInAccount.pendingTransaction,
+          ...data,
+        },
+      },
+    }
+  },
+
+  performTransaction: () => (state, actions) => {
+    const transaction = state.loggedInAccount.pendingTransaction
+    const ammount = parseFloat(transaction.ammount)
+
+    switch (state.loggedInAccount.pendingTransaction.type) {
+      case TransactionTypes.TRANSFER:
+        const recordFrom = transactionRecord(transaction.from, ammount)
+        const recordTo = transactionRecord(transaction.to, null, ammount)
+        return {
+          ...state,
+          loggedInAccount: {
+            ...state.loggedInAccount,
+            accounts: {
+              ...state.loggedInAccount.accounts,
+              [transaction.from]:
+                state.loggedInAccount.accounts[transaction.from] - ammount,
+              [transaction.to]:
+                state.loggedInAccount.accounts[transaction.to] + ammount,
+            },
+            activity: [
+              recordTo,
+              recordFrom,
+              ...state.loggedInAccount.activity,
+            ],
+          },
+        }
+
+      case TransactionTypes.DEPOSIT:
+        break
+
+      case TransactionTypes.WITHDRAW:
+        break
+
+      default:
+        logger.warn(`Unknown transaction type: ${transaction.type}`)
+        return null
+    }
+  },
+
   ...loginActions,
 }
 
 function cardVerificationTime() {
   const factor = Math.random() * 0.5 + 0.75
   return factor * BASE_VERIFICATION_TIME
+}
+
+function transactionRecord(account, withdraw = null, deposit = null, date = new Date()) {
+  return {
+    account,
+    withdraw,
+    deposit,
+    date,
+  }
 }

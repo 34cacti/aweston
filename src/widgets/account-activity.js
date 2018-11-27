@@ -8,8 +8,20 @@ export default function view(accounts, activity) {
       id: 'widget-account-activity',
     },
     [
-      html.div({class: 'account-balances'}, balancesTable(accounts)),
-      html.div({class: 'account-transactions'}, transactionsTable(activity)),
+      html.div(
+        {class: 'account-balances'},
+        [
+          html.b('Account Balances'),
+          balancesTable(accounts),
+        ],
+      ),
+      html.div(
+        {class: 'account-transactions'},
+        [
+          html.b('Recent Transactions'),
+          transactionsTable(activity),
+        ],
+      ),
     ]
   )
 }
@@ -43,14 +55,12 @@ function transactionsTable(transactions) {
     {class: 'account-transactions primary'},
     [
       html.thead([
-        html.tr(
-          [
-            html.th('Account'),
-            html.th('Withdraw'),
-            html.th('Deposit'),
-            html.th('Date'),
-          ]
-        ),
+        html.tr([
+          html.th('Account'),
+          html.th('Withdraw'),
+          html.th('Deposit'),
+          html.th('Date'),
+        ]),
       ]),
       html.tbody([
         transactions.map(transaction =>
@@ -58,7 +68,7 @@ function transactionsTable(transactions) {
             html.td(transaction.account),
             html.td(transaction.withdraw ? `$${transaction.withdraw}` : null),
             html.td(transaction.deposit ? `$${transaction.deposit}` : null),
-            html.td(transaction.date),
+            html.td(transaction.date.toLocaleString()),
           ])
         ),
       ]),

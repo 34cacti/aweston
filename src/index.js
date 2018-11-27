@@ -80,11 +80,18 @@ function renderPage(state, actions) {
     case PageTypes.MENU:
       return MenuPage(actions.transitionPage, state.loggedInAccount)
     case PageTypes.TRANSFER:
-      return TransferPage(actions.transitionPage, state.loggedInAccount)
+      return TransferPage(
+        actions.transitionPage,
+        state.loggedInAccount,
+        actions.updatePendingTransaction,
+        actions.performTransaction
+      )
     case PageTypes.WITHDRAW:
-      return WithdrawPage(actions.transitionPage, state.loggedInAccount)
+      return WithdrawPage(
+        actions.transitionPage, state.loggedInAccount, actions.updatePendingTransaction)
     case PageTypes.DEPOSIT:
-      return DepositPage(actions.transitionPage, state.loggedInAccount)
+      return DepositPage(
+        actions.transitionPage, state.loggedInAccount, actions.updatePendingTransaction)
     case PageTypes.FOUR_OH_FOUR:
     default:
       return FourOhFour(actions.transitionPage)
