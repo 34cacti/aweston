@@ -1,4 +1,5 @@
 import {PageTypes} from './types/pages'
+import {ModalTypes} from './types/modals'
 import {DeviceStates} from './types/device-states'
 import {LoginStates} from './types/login-states'
 import {TransactionTypes} from './types/transactions'
@@ -61,6 +62,14 @@ const loginActions = {
   },
 
   onCardInserterClick: () => (state, actions) => {
+    if (state.pendingLogout) {
+      setTimeout(() => actions.logUserOut())
+      return {
+        ...state,
+        cardInserted: false,
+      }
+    }
+
     if (state.page !== PageTypes.LOGIN)
       return
 
@@ -69,6 +78,7 @@ const loginActions = {
     return {
       ...state,
       cardInserterState: DeviceStates.PROCESSING,
+      cardInserted: true,
     }
   },
 
@@ -139,6 +149,13 @@ export const actions = {
 
   logUserOut: () => (state, actions) => {
     logger.log('Logging out')
+    if (state.cardInserted)
+      return {
+        ...actions.displayModal({type: ModalTypes.REMOVE_CARD, data: []}),
+        cardInserterState: DeviceStates.WAITING_FOR_USER,
+        pendingLogout: true,
+      }
+
     return initialState()
   },
 
