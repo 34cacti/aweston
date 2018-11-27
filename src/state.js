@@ -39,6 +39,8 @@ export function initialState() {
   return {
     page: PageTypes.WELCOME,
     loggedInAccount: null,
+    pendingLogout: false,
+    cardInserted: false,
     loginPageState: initialLoginState(),
     cardInserterState: DeviceStates.IDLE,
     cardSwiperState: DeviceStates.IDLE,
