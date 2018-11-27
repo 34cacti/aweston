@@ -72,14 +72,15 @@
 #atm-reflection {
   height: 100%;
   width: 100%;
-  background: url('../res/reflection.jpg');
+  background: url('../res/reflection.png');
   background-size: cover;
   background-position-x: 0;
-  opacity: 0.075;
+  opacity: 0.33;
   pointer-events: none;
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 999;
 }
 
 #atm-branding {
