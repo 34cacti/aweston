@@ -112,7 +112,7 @@
 #atm-shell > #widget-keypad {
   position: absolute;
   bottom: 0;
-  left: 40px;
+  left: 0;
   box-shadow: 0 16px 16px rgba(0, 0, 0, 0.25);
   transform: scale(0.7) perspective(2000px) rotateX(45deg);
   background: linear-gradient(to bottom, #00000000, #00000014);

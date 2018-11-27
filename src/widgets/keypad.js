@@ -6,20 +6,20 @@ export default function view() {
       id: 'widget-keypad',
     },
     [
-      keyRow(1, 2, 3),
-      keyRow(5, 6, 7),
-      keyRow(8, 9, 0),
-      keyRow('clear', 0, 'enter'),
+      keyRow(1, 2, 3, 'del'),
+      keyRow(4, 5, 6, 'clear'),
+      keyRow(7, 8, 9, ''),
+      keyRow('', 0, '.', 'enter'),
     ],
   )
 }
 
-function keyRow(k1, k2, k3) {
+function keyRow(k1, k2, k3, k4) {
   return html.div(
     {
       class: 'keypad-row',
     },
-    [k1, k2, k3].map(key),
+    [k1, k2, k3, k4].map(key),
   )
 }
 
@@ -33,7 +33,9 @@ function key(k) {
             ? 'keypad-key-enter'
             : k === 'clear'
               ? 'keypad-key-clear'
-              : ''
+              : k === 'del'
+                ? 'keypad-key-delete'
+                : null
         }
       `,
     },
