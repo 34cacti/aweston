@@ -84,6 +84,17 @@ const loginActions = {
     }
   },
 
+  onLoginCredentialClick: () => (state, actions) => {
+    return {
+      ...state,
+      loginPageState: {
+        ...state.loginPageState,
+        accountNumber: '5446124876258746',
+        pin: 5463
+      }
+    }
+  },
+
 }
 
 export const actions = {

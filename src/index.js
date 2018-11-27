@@ -76,7 +76,7 @@ function renderPage(state, actions) {
     case PageTypes.WELCOME:
       return WelcomePage(actions.transitionPage)
     case PageTypes.LOGIN:
-      return LoginPage(state.loginPageState, actions.verifyPin)
+      return LoginPage(state.loginPageState, actions.verifyPin, actions.onLoginCredentialClick)
     case PageTypes.MENU:
       return MenuPage(actions.transitionPage, state.loggedInAccount)
     case PageTypes.TRANSFER:

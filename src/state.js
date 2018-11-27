@@ -9,6 +9,8 @@ export function initialLoginState() {
     attempts: 0,
     currentMode: LoginStates.INITIAL,
     message: null,
+    accountNumber: null,
+    pin: null,
   }
 }
 

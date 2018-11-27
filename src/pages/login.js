@@ -4,20 +4,20 @@ import {PageTypes} from '../types/pages'
 import {LoginStates} from '../types/login-states'
 import loadingIcon from '../widgets/loading-icon'
 
-export default function view(state, logUserIn) {
+export default function view(state, logUserIn, credentialsClick) {
   return html.div(
     {
       id: 'page-login',
       class: 'page',
     },
-    renderViewBasedOnState(state, logUserIn),
+    renderViewBasedOnState(state, logUserIn, credentialsClick),
   )
 }
 
-function renderViewBasedOnState(state, logUserIn) {
+function renderViewBasedOnState(state, logUserIn, credentialsClick) {
   switch (state.currentMode) {
     case LoginStates.INITIAL:
-      return initialView(state.message, logUserIn)
+      return initialView(state, logUserIn, credentialsClick)
 
     case LoginStates.VERIFYING:
       return verifyingView()
@@ -27,18 +27,18 @@ function renderViewBasedOnState(state, logUserIn) {
   }
 }
 
-function initialView(message, logUserIn) {
+function initialView(state, logUserIn, credentialsClick) {
   return html.div([
     html.h3([
       html.div('Please insert or swipe card.'),
       html.div('Alternatively you may enter account number and pin.'),
-      message ? html.div({style: 'color: red'}, message) : null,
+      state ? html.div({style: 'color: red'}, state) : null,
     ]),
-    credentialForms(logUserIn),
+    credentialForms(state, logUserIn, credentialsClick),
   ])
 }
 
-function credentialForms(logUserIn) {
+function credentialForms(state, logUserIn, credentialsClick) {
   return html.form(
     {
       onsubmit: ev => onSubmit(ev, logUserIn),
@@ -47,20 +47,19 @@ function credentialForms(logUserIn) {
       html.label('Account number'),
       html.input(
         {
-          oncreate: el => {
-            el.focus()
-            el.value = '2347823894215673'
-          },
+          value: state.accountNumber,
+          readonly: true,
+          onclick: () => credentialsClick(),
         },
       ),
 
       html.label('Pin'),
       html.input(
         {
+          value: state.pin,
+          readonly: true, 
+          onclick: () => credentialsClick(),
           type: 'password',
-          oncreate: el => {
-            el.value = 'pin#'
-          },
         },
       ),
 
