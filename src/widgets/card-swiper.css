@@ -44,6 +44,7 @@
   left: -3px;
   box-shadow: inset -1px 1px 1px #999;
   cursor: default;
+  background: #444;
 }
 
 #card-swiper-icon {
