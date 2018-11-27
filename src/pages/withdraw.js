@@ -24,7 +24,7 @@ export default function view(
 }
 
 function withdrawForms(account, updatePendingTransaction, performTransaction) {
-  const fromAccount = 'checking'
+  const fromAccount = 'Checking'
   const [isTransactionValid, warningMessage] = 
     transactionValid(account.accounts, account.pendingTransaction)
 

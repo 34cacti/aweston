@@ -24,7 +24,7 @@ export default function view(
 }
 
 function depositForms(account, updatePendingTransaction, performTransaction) {
-  const toAccount = 'checking'
+  const toAccount = 'Checking'
   const [isTransactionValid, warningMessage]
     = transactionValid(account.accounts, account.pendingTransaction)
 
