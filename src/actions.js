@@ -210,10 +210,38 @@ export const actions = {
         }
 
       case TransactionTypes.DEPOSIT:
-        break
-
-      case TransactionTypes.WITHDRAW:
-        break
+        const recordDeposit = transactionRecord(transaction.to, null, ammount)
+        return {
+          ...state,
+          loggedInAccount: {
+            ...state.loggedInAccount,
+            accounts: {
+              [transaction.to]:
+                state.loggedInAccount.accounts[transaction.to] + ammount,
+            },
+            activity: [
+              recordDeposit,
+              ...state.loggedInAccount.activity,
+            ],
+          },
+        }
+ 
+       case TransactionTypes.WITHDRAW:
+        const recordWithdraw = transactionRecord(transaction.from, ammount)
+        return {
+          ...state,
+          loggedInAccount: {
+            ...state.loggedInAccount,
+            accounts: {
+             [transaction.from]:
+                state.loggedInAccount.accounts[transaction.from] - ammount,
+            },
+            activity: [
+              recordWithdraw,
+              ...state.loggedInAccount.activity,
+            ],
+          },
+        }
 
       default:
         logger.warn(`Unknown transaction type: ${transaction.type}`)
