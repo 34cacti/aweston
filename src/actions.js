@@ -8,8 +8,8 @@ import {initialState, initialLoginState, fakeAccount} from './state'
 
 const logger = getLogger('actions')
 
-const CARD_FAILURE_RATE = 0
-const BASE_VERIFICATION_TIME = 0
+const CARD_FAILURE_RATE = 0.5
+const BASE_VERIFICATION_TIME = 1000
 
 const loginActions = {
   logUserIn: () => (state, actions) => {

@@ -56,7 +56,7 @@ function displayView(state, actions) {
         {id: 'atm-screen'},
         [
           headerWidget(
-            createLogoutButton(state.page, actions.logUserOut),
+            getLogoutCallback(state.page, actions.logUserOut),
             createGoBackButton(state.page, actions.transitionPage),
             state.page,
             state.language,
@@ -76,7 +76,11 @@ function renderPage(state, actions) {
     case PageTypes.WELCOME:
       return WelcomePage(actions.transitionPage)
     case PageTypes.LOGIN:
-      return LoginPage(state.loginPageState, actions.verifyPin, actions.onLoginCredentialClick)
+      return LoginPage(
+        state.loginPageState,
+        actions.verifyPin,
+        actions.onLoginCredentialClick
+      )
     case PageTypes.MENU:
       return MenuPage(actions.transitionPage, state.loggedInAccount)
     case PageTypes.TRANSFER:
@@ -123,13 +127,13 @@ function createGoBackButton(page, transitionPage) {
   }
 }
 
-function createLogoutButton(page, transitionPage) {
+function getLogoutCallback(page, callback) {
   switch (page) {
     case PageTypes.MENU:
     case PageTypes.TRANSFER:
     case PageTypes.WITHDRAW:
     case PageTypes.DEPOSIT:
-      return () => transitionPage(PageTypes.WELCOME)
+      return () => callback(PageTypes.WELCOME)
     default:
       return null
   }
