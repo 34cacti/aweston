@@ -1,0 +1,5 @@
+#widget-language-selector select {
+  height: unset;
+  overflow: auto;
+  background: unset;
+}

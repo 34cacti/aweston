@@ -47,7 +47,7 @@ export function initialState() {
     cashSlotState: DeviceStates.IDLE,
     displayedModal: null,
     modalData: null,
-    language: 'EN',
-    languages: ['EN', 'FR', 'ES'],
+    language: 'English',
+    languages: ['English', 'Français', 'Español'],
   }
 }

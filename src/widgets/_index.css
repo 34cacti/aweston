@@ -5,6 +5,7 @@
 @import url('./header.css');
 @import url('./keypad.css');
 @import url('./loading-icon.css');
+@import url('./language-selector.css');
 @import url('./modal.css');
 
 .indicator-flashing {

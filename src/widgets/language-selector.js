@@ -12,6 +12,7 @@ export default function(language, languages, setLanguage) {
           {
             oncreate: el => { el.value = language },
             onchange: ev => setLanguage(ev.target.value),
+            multiple: true,
           },
           languages.map(lang => html.option({value: lang}, lang))
         ),
