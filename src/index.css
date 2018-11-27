@@ -12,7 +12,7 @@
   left: 0;
   height: 100%;
   width: 100%;
-  background: url('https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.technocrazed.com%2Fwp-content%2Fuploads%2F2015%2F12%2FBrick-wallaper-For-Background-33.jpg&f=1');
+  background: url('../res/bricks.jpg');
   background-size: 2000px;
   filter: contrast(1) brightness(0.85) saturate(0.4);
 }
