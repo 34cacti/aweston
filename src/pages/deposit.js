@@ -25,8 +25,8 @@ export default function view(
 
 function depositForms(account, updatePendingTransaction, performTransaction) {
   const toAccount = 'checking'
-  const [isTransactionValid, warningMessage] = 
-    transactionValid(account.accounts, account.pendingTransaction)
+  const [isTransactionValid, warningMessage]
+    = transactionValid(account.accounts, account.pendingTransaction)
 
   return html.form(
     {
@@ -81,11 +81,11 @@ function depositForms(account, updatePendingTransaction, performTransaction) {
               ev.preventDefault()
               performTransaction()
             },
-            //disabled: !isTransactionValid,
+            disabled: !isTransactionValid,
           },
           'Deposit'
         ),
-        //warningMessage ? html.div({class: 'warning'}, warningMessage) : null,
+        warningMessage ? html.div({class: 'warning'}, warningMessage) : null,
       ]),
     ],
   )
