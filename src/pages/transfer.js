@@ -162,7 +162,7 @@ function transferForms(account, updatePendingTransaction, performTransaction) {
 
 function transactionValid(accounts, transaction) {
   if (transaction.ammount === null || transaction.ammount <= 0) {
-    return [false, 'Invalid ammount']
+    return [false, 'Invalid amount']
   }
 
   if (transaction.from === transaction.to) {

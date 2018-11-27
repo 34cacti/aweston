@@ -76,7 +76,7 @@ function credentialForms(state, logUserIn, credentialsClick) {
           {
             disabled: !isFormValid,
           },
-          'Deposit'
+          'Login'
         ),
         warningMessage ? html.div({class: 'warning'}, warningMessage) : null,
       ]),
