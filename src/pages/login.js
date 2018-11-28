@@ -78,7 +78,7 @@ function credentialForms(state, logUserIn, credentialsClick) {
           },
           'Login'
         ),
-        warningMessage ? html.div({class: 'warning'}, warningMessage) : null,
+        warningMessage ? html.div({class: 'warning-text'}, warningMessage) : null,
       ]),
     ],
   )

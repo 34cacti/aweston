@@ -86,7 +86,7 @@ function withdrawForms(account, updatePendingTransaction, performTransaction) {
           },
           'Withdraw'
         ),
-        warningMessage ? html.div({class: 'warning'}, warningMessage) : null,
+        warningMessage ? html.div({class: 'warning-text'}, warningMessage) : null,
       ]),
     ],
   )

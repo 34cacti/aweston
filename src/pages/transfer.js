@@ -154,7 +154,7 @@ function transferForms(account, updatePendingTransaction, performTransaction) {
           },
           'Transfer'
         ),
-        warningMessage ? html.div({class: 'warning'}, warningMessage) : null,
+        warningMessage ? html.div({class: 'warning-text'}, warningMessage) : null,
       ]),
     ],
   )
