@@ -9,8 +9,8 @@ export default function view(onClick) {
     [
       keyRow(1, 2, 3, 'del'),
       keyRow(4, 5, 6, 'clear'),
-      keyRow(7, 8, 9, ''),
-      keyRow('', 0, '.', 'enter'),
+      keyRow(7, 8, 9, null),
+      keyRow(null, 0, '.', 'enter'),
     ],
   )
 }
@@ -40,5 +40,7 @@ function key(k) {
       specialClass = ''
   }
 
-  return html.div({class: `keypad-key ${specialClass}`}, k)
+  const displayKeyClass = k === null ? 'empty-key' : ''
+
+  return html.div({class: `keypad-key ${specialClass} ${displayKeyClass}`}, k)
 }
