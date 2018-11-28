@@ -37,6 +37,8 @@ const loginActions = {
         currentMode: LoginStates.INITIAL,
         attempts: state.loginPageState + 1,
         message: reason,
+        accountNumber: null,
+        pin: null,
       },
       cardSwiperState: DeviceStates.WAITING_FOR_USER,
       cardInserterState: DeviceStates.WAITING_FOR_USER,
@@ -188,6 +190,7 @@ export const actions = {
       ...state,
       displayedModal: null,
       modalData: null,
+      cashSlotState: DeviceStates.IDLE,
     }
   },
 
