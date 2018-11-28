@@ -7,7 +7,7 @@ export default function view(onClick) {
       onclick: () => onClick(),
     },
     [
-      keyRow(1, 2, 3, 'del'),
+      keyRow(1, 2, 3, '⌫'),
       keyRow(4, 5, 6, 'clear'),
       keyRow(7, 8, 9, null),
       keyRow(null, 0, '.', 'enter'),
@@ -30,7 +30,7 @@ function key(k) {
     case 'enter':
       specialClass = 'keypad-key-enter'
       break
-    case 'del':
+    case '⌫':
       specialClass = 'keypad-key-delete'
       break
     case 'clear':
