@@ -39,12 +39,9 @@
   top: calc(20% + 4px);
   width: 24px;
   height: 24px;
-  opacity: 0.3;
+  opacity: 1;
   cursor: pointer;
   z-index: 1;
-}
-.close-icon:hover {
-  opacity: 1;
 }
 .close-icon:before, .close-icon:after {
   position: absolute;
