@@ -66,6 +66,13 @@ const loginActions = {
     }
   },
 
+  onKeypadClick: () => (state, actions) => {
+    if (state.page !== PageTypes.LOGIN)
+      return
+
+    return actions.onLoginCredentialClick()
+  },
+
   onCardInserterClick: () => (state, actions) => {
     if (state.pendingLogout) {
       setTimeout(() => actions.logUserOut())

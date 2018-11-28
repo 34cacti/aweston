@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   box-shadow: inset 0px 0px 16px #3333332f;
-  pointer-events: none
+  cursor: pointer;
 }
 
 .keypad-row {
@@ -17,25 +17,22 @@
   width: 64px;
   height: 48px;
   margin: 4px 12px;
-  border: 1px solid #ccc;
-  box-shadow: 0 0 4px #000;
-  background: #aaa;
+  border: 3px solid #888;
+  border-width: 1px 2px 6px 2px;
+  box-shadow: 0 0 8px 1px #00000080;
   font-weight: bold;
-  font-size: 24px;
-  color: #555;
+  font-size: 42px;
+  color: #595959;
   text-shadow: -1px 1px 12px #888;
   border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
+  user-select: none;
 
   /* https://uigradients.com/#Zinc */
   background: linear-gradient(to top right, #ada996, #f2f2f2, #dbdbdb, #eaeaea);
 
-}
-
-.keypad-key:contains("") {
-  display: none;
 }
 
 .keypad-key-enter {

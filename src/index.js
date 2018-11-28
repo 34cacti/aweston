@@ -34,7 +34,7 @@ function view(state, actions) {
       cardInserter(state.cardInserterState, actions.onCardInserterClick),
       cashSlot(state.cashSlotState, actions.onCashSlotClick),
       atmBranding(),
-      keypad(),
+      keypad(actions.onKeypadClick),
     ])
   )
 }

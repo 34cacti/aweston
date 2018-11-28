@@ -1,9 +1,10 @@
 import * as html from '@hyperapp/html'
 
-export default function view() {
+export default function view(onClick) {
   return html.div(
     {
       id: 'widget-keypad',
+      onclick: () => onClick(),
     },
     [
       keyRow(1, 2, 3, 'del'),
@@ -14,31 +15,30 @@ export default function view() {
   )
 }
 
-function keyRow(k1, k2, k3, k4) {
+function keyRow(...keys) {
   return html.div(
     {
       class: 'keypad-row',
     },
-    [k1, k2, k3, k4].map(key),
+    keys.map(key),
   )
 }
 
 function key(k) {
-  return html.div(
-    {
-      class: `
-        keypad-key
-        ${
-          k === 'enter'
-            ? 'keypad-key-enter'
-            : k === 'clear'
-              ? 'keypad-key-clear'
-              : k === 'del'
-                ? 'keypad-key-delete'
-                : null
-        }
-      `,
-    },
-    k
-  )
+  let specialClass
+  switch (k) {
+    case 'enter':
+      specialClass = 'keypad-key-enter'
+      break
+    case 'del':
+      specialClass = 'keypad-key-delete'
+      break
+    case 'clear':
+      specialClass = 'keypad-key-clear'
+      break
+    default:
+      specialClass = ''
+  }
+
+  return html.div({class: `keypad-key ${specialClass}`}, k)
 }
