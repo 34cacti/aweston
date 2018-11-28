@@ -32,6 +32,7 @@ export function fakeAccount() {
 
 export function initialState() {
   return {
+    time: new Date(),
     page: PageTypes.WELCOME,
     loggedInAccount: null,
     pendingLogout: false,

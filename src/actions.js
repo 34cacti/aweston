@@ -339,6 +339,14 @@ export const actions = {
     }
   },
 
+  updateTime: () => (state, actions) => {
+    setTimeout(() => actions.updateTime(), 1)
+    return {
+      ...state,
+      time: new Date(),
+    }
+  },
+
   ...loginActions,
 }
 

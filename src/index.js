@@ -39,6 +39,10 @@ function view(state, actions) {
   )
 }
 
+function renderClock(time) {
+  return html.div({id: 'time'}, time)
+}
+
 function atmBranding() {
   return html.div({id: 'atm-branding'}, 'Iron Bank of Braavos')
 }
@@ -65,6 +69,7 @@ function displayView(state, actions) {
           ),
           renderPage(state, actions),
           renderModal(state, actions),
+          renderClock(state.time.toLocaleString()),
         ],
       ),
     ],
@@ -150,3 +155,4 @@ function getLanguageSelectorModalOpenCallback(
 }
 
 const app = devtools(hyperapp)(state, actions, view, document.querySelector('#root'))
+app.updateTime()
