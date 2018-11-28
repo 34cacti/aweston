@@ -34,7 +34,8 @@ function withdrawForms(account, updatePendingTransaction, performTransaction) {
         updatePendingTransaction({
           type: TransactionTypes.WITHDRAW,
           from: fromAccount,
-          ammount: null,
+          amount: null,
+          cashSlotInteractionRequired: true,
         })
       },
     },
@@ -51,7 +52,7 @@ function withdrawForms(account, updatePendingTransaction, performTransaction) {
           accountName =>
           html.option(
             {value: accountName},
-            `${accountName}  $${account.accounts[accountName]}`
+            `${accountName} | Available funds: $${account.accounts[accountName]}`
           )
         )
       ),
@@ -61,9 +62,9 @@ function withdrawForms(account, updatePendingTransaction, performTransaction) {
           oncreate: el => {
             el.focus()
           },
-          value: account.pendingTransaction.ammount,
+          value: account.pendingTransaction.amount,
           oninput: ev => {
-            updatePendingTransaction({ammount: ev.target.value})
+            updatePendingTransaction({amount: ev.target.value})
           },
         },
       ),
@@ -92,11 +93,11 @@ function withdrawForms(account, updatePendingTransaction, performTransaction) {
 }
 
 function transactionValid(accounts, transaction) {
-  if (transaction.ammount === null || transaction.ammount <= 0) {
+  if (transaction.amount === null || transaction.amount <= 0) {
     return [false, 'Invalid amount']
   }
 
-    if (accounts[transaction.from] - transaction.ammount < 0) {
+    if (accounts[transaction.from] - transaction.amount < 0) {
     return [false, 'Insufficient funds']
   }
 

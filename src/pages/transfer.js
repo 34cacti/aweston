@@ -35,7 +35,7 @@ function transferForms(account, updatePendingTransaction, performTransaction) {
           type: TransactionTypes.TRANSFER,
           from: firstAccount,
           to: secondAccount,
-          ammount: null,
+          amount: null,
         })
       },
     },
@@ -52,7 +52,7 @@ function transferForms(account, updatePendingTransaction, performTransaction) {
           accountName =>
           html.option(
             {value: accountName},
-            `${accountName}  $${account.accounts[accountName]}`
+            `${accountName} | Available funds: $${account.accounts[accountName]}`
           )
         )
       ),
@@ -68,7 +68,7 @@ function transferForms(account, updatePendingTransaction, performTransaction) {
           accountName =>
           html.option(
             {value: accountName},
-            `${accountName}  $${account.accounts[accountName]}`
+            `${accountName} | Available funds: $${account.accounts[accountName]}`
           )
         )
       ),
@@ -78,9 +78,9 @@ function transferForms(account, updatePendingTransaction, performTransaction) {
           oncreate: el => {
             el.focus()
           },
-          value: account.pendingTransaction.ammount,
+          value: account.pendingTransaction.amount,
           oninput: ev => {
-            updatePendingTransaction({ammount: ev.target.value})
+            updatePendingTransaction({amount: ev.target.value})
           },
         },
       ),
@@ -90,7 +90,7 @@ function transferForms(account, updatePendingTransaction, performTransaction) {
       //       onclick: ev => {
       //         ev.preventDefault()
       //         updatePendingTransaction({
-      //           ammount: parseFloat(account.pendingTransaction.ammount) - 10})
+      //           amount: parseFloat(account.pendingTransaction.amount) - 10})
       //       },
       //     },
       //     '- $10'
@@ -100,7 +100,7 @@ function transferForms(account, updatePendingTransaction, performTransaction) {
       //       onclick: ev => {
       //         ev.preventDefault()
       //         updatePendingTransaction({
-      //           ammount: parseFloat(account.pendingTransaction.ammount) + 10})
+      //           amount: parseFloat(account.pendingTransaction.amount) + 10})
       //       },
       //     },
       //     '+ $10'
@@ -110,7 +110,7 @@ function transferForms(account, updatePendingTransaction, performTransaction) {
       //       onclick: ev => {
       //         ev.preventDefault()
       //         updatePendingTransaction({
-      //           ammount: parseFloat(account.pendingTransaction.ammount) + 20})
+      //           amount: parseFloat(account.pendingTransaction.amount) + 20})
       //       },
       //     },
       //     '+ $20'
@@ -120,7 +120,7 @@ function transferForms(account, updatePendingTransaction, performTransaction) {
       //       onclick: ev => {
       //         ev.preventDefault()
       //         updatePendingTransaction({
-      //           ammount: parseFloat(account.pendingTransaction.ammount) + 50})
+      //           amount: parseFloat(account.pendingTransaction.amount) + 50})
       //       },
       //     },
       //     '+ $50'
@@ -130,7 +130,7 @@ function transferForms(account, updatePendingTransaction, performTransaction) {
       //       onclick: ev => {
       //         ev.preventDefault()
       //         updatePendingTransaction({
-      //           ammount: parseFloat(account.pendingTransaction.ammount) + 100})
+      //           amount: parseFloat(account.pendingTransaction.amount) + 100})
       //       },
       //     },
       //     '+ $100'
@@ -161,7 +161,7 @@ function transferForms(account, updatePendingTransaction, performTransaction) {
 }
 
 function transactionValid(accounts, transaction) {
-  if (transaction.ammount === null || transaction.ammount <= 0) {
+  if (transaction.amount === null || transaction.amount <= 0) {
     return [false, 'Invalid amount']
   }
 
@@ -169,7 +169,7 @@ function transactionValid(accounts, transaction) {
     return [false, 'Can not transfer between same account']
   }
 
-  if (accounts[transaction.from] - transaction.ammount < 0) {
+  if (accounts[transaction.from] - transaction.amount < 0) {
     return [false, 'Insufficient funds']
   }
 

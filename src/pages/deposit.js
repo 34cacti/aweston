@@ -25,8 +25,6 @@ export default function view(
 
 function depositForms(account, updatePendingTransaction, performTransaction) {
   const toAccount = 'Checking'
-  const [isTransactionValid, warningMessage]
-    = transactionValid(account.accounts, account.pendingTransaction)
 
   return html.form(
     {
@@ -34,7 +32,8 @@ function depositForms(account, updatePendingTransaction, performTransaction) {
         updatePendingTransaction({
           type: TransactionTypes.DEPOSIT,
           to: toAccount,
-          ammount: null,
+          amount: null,
+          cashSlotInteractionRequired: true,
         })
       },
     },
@@ -51,21 +50,9 @@ function depositForms(account, updatePendingTransaction, performTransaction) {
           accountName =>
           html.option(
             {value: accountName},
-            `${accountName}  $${account.accounts[accountName]}`
+            `${accountName} | Available funds: $${account.accounts[accountName]}`
           )
         )
-      ),
-      html.label('Enter Amount'),
-      html.input(
-        {
-          oncreate: el => {
-            el.focus()
-          },
-          value: account.pendingTransaction.ammount,
-          oninput: ev => {
-            updatePendingTransaction({ammount: ev.target.value})
-          },
-        },
       ),
 
       html.div(
@@ -81,20 +68,10 @@ function depositForms(account, updatePendingTransaction, performTransaction) {
               ev.preventDefault()
               performTransaction()
             },
-            disabled: !isTransactionValid,
           },
-          'Deposit'
+          'Enter cash into slot'
         ),
-        warningMessage ? html.div({class: 'warning'}, warningMessage) : null,
       ]),
     ],
   )
-}
-
-function transactionValid(accounts, transaction) {
-  if (transaction.ammount === null || transaction.ammount <= 0) {
-    return [false, 'Invalid amount']
-  }
-
-  return [true, null]
 }

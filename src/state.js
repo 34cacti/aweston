@@ -18,12 +18,7 @@ export function fakeAccount() {
   return {
     number: '5446124876258746',
     holder: 'John Cena',
-    pendingTransaction: {
-      type: null,
-      from: null,
-      to: null,
-      ammount: null,
-    },
+    pendingTransaction: initalPendingTransaction(),
     accounts: {
       Checking: 12.91,
       Savings: 234.33,
@@ -45,9 +40,22 @@ export function initialState() {
     cardInserterState: DeviceStates.IDLE,
     cardSwiperState: DeviceStates.IDLE,
     cashSlotState: DeviceStates.IDLE,
+    waitingForCashCollection: false,
+    waitingForCashDeposit: false,
     displayedModal: null,
     modalData: null,
     language: 'English',
     languages: ['English', 'Français', 'Español'],
+  }
+}
+
+export function initalPendingTransaction() {
+  return {
+    type: null,
+    from: null,
+    to: null,
+    amount: null,
+    cashSlotInteractionRequired: false,
+    confirmed: false,
   }
 }

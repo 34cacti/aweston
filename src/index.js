@@ -32,7 +32,7 @@ function view(state, actions) {
       displayView(state, actions),
       cardSwiper(state.cardSwiperState, actions.onCardSwiperClick),
       cardInserter(state.cardInserterState, actions.onCardInserterClick),
-      cashSlot(state.cashSlotState, actions.onCashRetrievalClick),
+      cashSlot(state.cashSlotState, actions.onCashSlotClick),
       atmBranding(),
       keypad(),
     ])

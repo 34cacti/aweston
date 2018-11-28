@@ -4,11 +4,16 @@ import {DeviceStates} from './types/device-states'
 import {LoginStates} from './types/login-states'
 import {TransactionTypes} from './types/transactions'
 import {getLogger} from './logger'
-import {initialState, initialLoginState, fakeAccount} from './state'
+import {
+  initalPendingTransaction,
+  initialState,
+  initialLoginState,
+  fakeAccount,
+} from './state'
 
 const logger = getLogger('actions')
 
-const CARD_FAILURE_RATE = 0.5
+const CARD_FAILURE_RATE = 0.15
 const BASE_VERIFICATION_TIME = 1000
 
 const loginActions = {
@@ -91,6 +96,34 @@ const loginActions = {
     return {
       ...state,
       cardSwiperState: DeviceStates.PROCESSING,
+    }
+  },
+
+  onCashSlotClick: () => (state, actions) => {
+    if (state.cashSlotState !== DeviceStates.WAITING_FOR_USER)
+      return
+
+    if (state.waitingForCashCollection) {
+      setTimeout(() => actions.performTransaction(), 0)
+      return {
+        ...state,
+        waitingForCashCollection: false,
+        ...actions.updatePendingTransaction({
+          cashSlotInteractionRequired: false,
+        }),
+      }
+    }
+
+    if (state.waitingForCashDeposit) {
+      setTimeout(() => actions.performTransaction(), 0)
+      return {
+        ...state,
+        waitingForCashDeposit: false,
+        ...actions.updatePendingTransaction({
+          cashSlotInteractionRequired: false,
+          amount: Math.round(Math.random() * 10) * 10,
+        }),
+      }
     }
   },
 
@@ -184,22 +217,24 @@ export const actions = {
 
   performTransaction: () => (state, actions) => {
     const transaction = state.loggedInAccount.pendingTransaction
-    const ammount = parseFloat(transaction.ammount)
+    const amount = parseFloat(transaction.amount)
 
     switch (state.loggedInAccount.pendingTransaction.type) {
       case TransactionTypes.TRANSFER:
-        const recordFrom = transactionRecord(transaction.from, ammount)
-        const recordTo = transactionRecord(transaction.to, null, ammount)
+        const recordFrom = transactionRecord(transaction.from, amount)
+        const recordTo = transactionRecord(transaction.to, null, amount)
+        setTimeout(() => actions.transitionPage(PageTypes.MENU), 0)
         return {
           ...state,
           loggedInAccount: {
             ...state.loggedInAccount,
+            pendingTransaction: initalPendingTransaction(),
             accounts: {
               ...state.loggedInAccount.accounts,
               [transaction.from]:
-                state.loggedInAccount.accounts[transaction.from] - ammount,
+                state.loggedInAccount.accounts[transaction.from] - amount,
               [transaction.to]:
-                state.loggedInAccount.accounts[transaction.to] + ammount,
+                state.loggedInAccount.accounts[transaction.to] + amount,
             },
             activity: [
               recordTo,
@@ -210,46 +245,58 @@ export const actions = {
         }
 
       case TransactionTypes.DEPOSIT:
-        return {
-          ...actions.displayModal({type: ModalTypes.DEPOSIT_CASH, data: []}),
-        }
-        /*
-        const recordDeposit = transactionRecord(transaction.to, null, ammount)
+        if (state.loggedInAccount.pendingTransaction.cashSlotInteractionRequired)
+          return {
+            ...actions.displayModal({type: ModalTypes.DEPOSIT_CASH, data: []}),
+            cashSlotState: DeviceStates.WAITING_FOR_USER,
+            waitingForCashDeposit: true,
+          }
+
+        const recordDeposit = transactionRecord(transaction.to, null, amount)
+        setTimeout(() => actions.transitionPage(PageTypes.MENU), 0)
         return {
           ...state,
+          ...actions.closeModal(),
           loggedInAccount: {
             ...state.loggedInAccount,
+            pendingTransaction: initalPendingTransaction(),
             accounts: {
               [transaction.to]:
-                state.loggedInAccount.accounts[transaction.to] + ammount,
+                state.loggedInAccount.accounts[transaction.to] + amount,
             },
             activity: [
               recordDeposit,
               ...state.loggedInAccount.activity,
             ],
           },
-        }*/
- 
-       case TransactionTypes.WITHDRAW:
-        return{
-          ...actions.displayModal({type: ModalTypes.COLLECT_CASH, data: []}),
         }
-        /*
-        const recordWithdraw = transactionRecord(transaction.from, ammount)
+
+       case TransactionTypes.WITHDRAW:
+        if (state.loggedInAccount.pendingTransaction.cashSlotInteractionRequired)
+          return {
+            ...actions.displayModal({type: ModalTypes.COLLECT_CASH, data: []}),
+            cashSlotState: DeviceStates.WAITING_FOR_USER,
+            waitingForCashCollection: true,
+          }
+
+        const recordWithdraw = transactionRecord(transaction.from, amount)
+        setTimeout(() => actions.transitionPage(PageTypes.MENU), 0)
         return {
           ...state,
+          ...actions.closeModal(),
           loggedInAccount: {
             ...state.loggedInAccount,
+            pendingTransaction: initalPendingTransaction(),
             accounts: {
-             [transaction.from]:
-                state.loggedInAccount.accounts[transaction.from] - ammount,
+              [transaction.from]:
+              state.loggedInAccount.accounts[transaction.from] - amount,
             },
             activity: [
               recordWithdraw,
               ...state.loggedInAccount.activity,
             ],
           },
-        }*/
+        }
 
       default:
         logger.warn(`Unknown transaction type: ${transaction.type}`)
