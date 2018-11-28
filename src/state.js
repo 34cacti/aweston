@@ -42,6 +42,7 @@ export function initialState() {
     cashSlotState: DeviceStates.IDLE,
     waitingForCashCollection: false,
     waitingForCashDeposit: false,
+    waitingForCashDepositConfirmation: false,
     displayedModal: null,
     modalData: null,
     language: 'English',

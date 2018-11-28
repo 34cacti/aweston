@@ -134,6 +134,14 @@ const loginActions = {
         }),
       }
     }
+
+    if (state.waitingForCashDepositConfirmation) {
+      setTimeout(() => actions.performTransaction(), 0)
+      return {
+        ...state,
+        waitingForCashDepositConfirmation: false,
+      }
+    }
   },
 
   onLoginCredentialClick: () => (state, actions) => {
@@ -255,26 +263,39 @@ export const actions = {
         }
 
       case TransactionTypes.DEPOSIT:
-        if (state.loggedInAccount.pendingTransaction.cashSlotInteractionRequired)
+        if (state.loggedInAccount.pendingTransaction.cashSlotInteractionRequired) {
           return {
             ...actions.displayModal({type: ModalTypes.DEPOSIT_CASH, data: []}),
             cashSlotState: DeviceStates.WAITING_FOR_USER,
             waitingForCashDeposit: true,
+            waitingForCashDepositConfirmation: true,
           }
+        }
+
+        if (state.waitingForCashDepositConfirmation) {
+          return {
+            ...state,
+            ...actions.displayModal({
+              type: ModalTypes.DEPOSIT_CONFIRM,
+              data: [transaction.to, amount, actions.performTransaction],
+            }),
+            cashSlotState: DeviceStates.IDLE,
+            waitingForCashDepositConfirmation: false,
+          }
+        }
 
         const recordDeposit = transactionRecord(transaction.to, null, amount)
         setTimeout(() => actions.transitionPage(PageTypes.MENU), 0)
         return {
           ...state,
           ...actions.closeModal(),
-          cashSlotState: DeviceStates.IDLE,
           loggedInAccount: {
             ...state.loggedInAccount,
             pendingTransaction: initalPendingTransaction(),
             accounts: {
               ...state.loggedInAccount.accounts,
               [transaction.to]:
-                state.loggedInAccount.accounts[transaction.to] + amount,
+              state.loggedInAccount.accounts[transaction.to] + amount,
             },
             activity: [
               recordDeposit,
@@ -286,7 +307,7 @@ export const actions = {
        case TransactionTypes.WITHDRAW:
         if (state.loggedInAccount.pendingTransaction.cashSlotInteractionRequired)
           return {
-            ...actions.displayModal({type: ModalTypes.COLLECT_CASH, data: []}),
+            ...actions.displayModal({type: ModalTypes.COLLECT_CASH, data: [amount]}),
             cashSlotState: DeviceStates.WAITING_FOR_USER,
             waitingForCashCollection: true,
           }
