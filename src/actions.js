@@ -272,6 +272,7 @@ export const actions = {
             ...state.loggedInAccount,
             pendingTransaction: initalPendingTransaction(),
             accounts: {
+              ...state.loggedInAccount.accounts,
               [transaction.to]:
                 state.loggedInAccount.accounts[transaction.to] + amount,
             },
@@ -300,6 +301,7 @@ export const actions = {
             ...state.loggedInAccount,
             pendingTransaction: initalPendingTransaction(),
             accounts: {
+              ...state.loggedInAccount.accounts,
               [transaction.from]:
               state.loggedInAccount.accounts[transaction.from] - amount,
             },
