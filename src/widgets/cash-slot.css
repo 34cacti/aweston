@@ -13,32 +13,7 @@
   z-index: 0;
   cursor: pointer;
 }
-/*
-#cash-slot-widget:before {
-  content: '';
-  position: absolute;
-  top: -40px;
-  left: 30px;
-  width: 80px;
-  height: 40px;
-  background: #333;
-  border-radius: 100%;
-  clip: rect(0, 80px, 20px, 0);
-  z-index: -1;
-}
-#cash-slot-widget:after {
-  content: '';
-  position: absolute;
-  top: -45px;
-  left: 30px;
-  width: 80px;
-  height: 40px;
-  background: #555;
-  border-radius: 100%;
-  clip: rect(20px, 80px, 40px, 0);
-  z-index: -1;
-}
-*/
+
 #cash-slot-indicator {
   position: absolute;
   width: 230px;
@@ -47,6 +22,7 @@
   left: -4px;
   box-shadow: inset -1px 1px 1px #999;
   cursor: default;
+  background: #444;
 }
 
 .cash-slot-waiting-for-user {

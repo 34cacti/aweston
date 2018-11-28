@@ -14,7 +14,7 @@ export default function view(requestPageTransition) {
           class: 'very-large-button',
           onclick: () => requestPageTransition(PageTypes.LOGIN),
         },
-        ['touch to begin'],
+        ['Touch to begin'],
       ),
     ],
   )
