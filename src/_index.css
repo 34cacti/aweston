@@ -9,7 +9,8 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  flex: 9;
 }
 
 .very-large-button {
@@ -19,5 +20,5 @@
 }
 
 .warning-text {
-  color: red;
+  color: #cf2424;
 }

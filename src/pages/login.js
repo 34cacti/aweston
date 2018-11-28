@@ -67,9 +67,7 @@ function credentialForms(state, logUserIn, credentialsClick) {
 
       html.div(
         {
-          style: {
-            display: 'flex',
-          },
+          class: 'form-control-and-warning',
         },
         [
         html.button(

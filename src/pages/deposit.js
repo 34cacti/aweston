@@ -57,9 +57,7 @@ function depositForms(account, updatePendingTransaction, performTransaction) {
 
       html.div(
         {
-          style: {
-            display: 'flex',
-          },
+          class: 'form-control-and-warning',
         },
         [
         html.button(
