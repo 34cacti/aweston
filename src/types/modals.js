@@ -3,6 +3,7 @@ import removeCardWidget from '../widgets/remove-card'
 import collectCashWidget from '../widgets/collect-cash'
 import depositCashWidget from '../widgets/deposit-cash'
 import depositConfirmWidget from '../widgets/deposit-confirm'
+import transferConfirmWidget from '../widgets/transfer-confirm'
 
 export const ModalTypes = Object.freeze({
   LANGUAGE: languageSelectorWidget,
@@ -10,4 +11,5 @@ export const ModalTypes = Object.freeze({
   COLLECT_CASH: collectCashWidget,
   DEPOSIT_CASH: depositCashWidget,
   DEPOSIT_CONFIRM: depositConfirmWidget,
+  TRANSFER_CONFIRM: transferConfirmWidget,
 })

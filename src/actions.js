@@ -239,11 +239,24 @@ export const actions = {
 
     switch (state.loggedInAccount.pendingTransaction.type) {
       case TransactionTypes.TRANSFER:
+        if (!transaction.confirmed) {
+          return {
+            ...state,
+            ...actions.displayModal({
+              type: ModalTypes.TRANSFER_CONFIRM,
+              data: [transaction.from, transaction.to, amount, actions.performTransaction],
+            }),
+            ...actions.updatePendingTransaction({confirmed: true}),
+            waitingForTransactionConfirmation: true,
+          }
+        }
+
         const recordFrom = transactionRecord(transaction.from, amount)
         const recordTo = transactionRecord(transaction.to, null, amount)
         setTimeout(() => actions.transitionPage(PageTypes.MENU), 0)
         return {
           ...state,
+          ...actions.closeModal(),
           loggedInAccount: {
             ...state.loggedInAccount,
             pendingTransaction: initalPendingTransaction(),
