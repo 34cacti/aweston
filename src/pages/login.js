@@ -31,7 +31,7 @@ function initialView(state, logUserIn, credentialsClick) {
   return html.div([
     html.h3([
       html.div('Please insert or swipe card.'),
-      html.div('Alternatively you may enter account number and pin.'),
+      html.div('Alternatively, enter your account number and pin.'),
       state.message ? html.div({style: 'color: red'}, state.message) : null,
     ]),
     credentialForms(state, logUserIn, credentialsClick),

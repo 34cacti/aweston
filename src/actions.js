@@ -264,6 +264,7 @@ export const actions = {
         return {
           ...state,
           ...actions.closeModal(),
+          cashSlotState: DeviceStates.IDLE,
           loggedInAccount: {
             ...state.loggedInAccount,
             pendingTransaction: initalPendingTransaction(),
@@ -291,6 +292,7 @@ export const actions = {
         return {
           ...state,
           ...actions.closeModal(),
+          cashSlotState: DeviceStates.IDLE,
           loggedInAccount: {
             ...state.loggedInAccount,
             pendingTransaction: initalPendingTransaction(),

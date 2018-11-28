@@ -42,7 +42,7 @@ function balancesTable(accounts) {
         Object.keys(accounts).map(account =>
           html.tr([
             html.td(account),
-            html.td(`$${accounts[account]}`),
+            html.td(`$${accounts[account].toFixed(2)}`),
           ])
         ),
       ])

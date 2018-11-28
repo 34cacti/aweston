@@ -50,7 +50,7 @@ function depositForms(account, updatePendingTransaction, performTransaction) {
           accountName =>
           html.option(
             {value: accountName},
-            `${accountName} | Available funds: $${account.accounts[accountName]}`
+            `${accountName} | Available funds: $${account.accounts[accountName].toFixed(2)}`
           )
         )
       ),

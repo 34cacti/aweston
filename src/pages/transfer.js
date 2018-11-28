@@ -52,7 +52,7 @@ function transferForms(account, updatePendingTransaction, performTransaction) {
           accountName =>
           html.option(
             {value: accountName},
-            `${accountName} | Available funds: $${account.accounts[accountName]}`
+            `${accountName} | Available funds: $${account.accounts[accountName].toFixed(2)}`
           )
         )
       ),
@@ -68,7 +68,7 @@ function transferForms(account, updatePendingTransaction, performTransaction) {
           accountName =>
           html.option(
             {value: accountName},
-            `${accountName} | Available funds: $${account.accounts[accountName]}`
+            `${accountName} | Available funds: $${account.accounts[accountName].toFixed(2)}`
           )
         )
       ),
