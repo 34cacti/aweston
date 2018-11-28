@@ -353,7 +353,7 @@ export const actions = {
   },
 
   updateTime: () => (state, actions) => {
-    setTimeout(() => actions.updateTime(), 1)
+    setTimeout(() => actions.updateTime(), 1000)
     return {
       ...state,
       time: new Date(),
